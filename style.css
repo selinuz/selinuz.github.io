@@ -25,6 +25,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #1b1a55;
+  position: relative;
+  z-index: 1000;
 }
 
 nav .heading h4 {
@@ -58,7 +60,7 @@ nav .nav-links a.active,
 nav .nav-links a:hover {
   background-color: #1b1a55;
   color: #e4e8f0;
-  border-radius: 5px;
+  border-radius: s5px;
 }
 
 /* Responsive Design */

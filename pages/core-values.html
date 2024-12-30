@@ -19,19 +19,21 @@
     </nav>
 
     <div class="body-text">
-      <h1>Core Values Map</h1>
-
       <svg
         id="connections"
-        xmlns="http://www.w3.org/2000/svg"
-        style="
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-        "></svg>
+        width="100%"
+        height="100%"
+        style="position: absolute; top: 0; left: 0; pointer-events: auto"></svg>
+
+      <div
+        id="ubc-cs"
+        class="activity-box"
+        onmousedown="startDrag(event)"
+        onclick="showActivityDetails(this)">
+        <p class="title">Computer Science, BSc</p>
+        <p class="location">University of British Columbia</p>
+        <p class="duration">September 2020 – May 2026 (expected)</p>
+      </div>
 
       <div
         id="leadership"
