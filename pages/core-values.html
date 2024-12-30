@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core Values</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../styles/core-values.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a class="active" href="./core-values.html">Core Values</a></li>
+        <li><a href="./projects.html">Projects</a></li>
+      </ul>
+    </nav>
+
+    <div class="body-text">
+      <h1>Core Values Map</h1>
+
+      <svg
+        id="connections"
+        xmlns="http://www.w3.org/2000/svg"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        "></svg>
+
+      <div
+        id="leadership"
+        class="core-value"
+        onmousedown="startDrag(event)"
+        onclick="toggleDefinition(this)">
+        <h3>Leadership</h3>
+        <p class="definition">
+          "Inspiring and guiding others with empathy and kindness to achieve
+          collective success."
+        </p>
+      </div>
+
+      <div
+        id="excellence"
+        class="core-value"
+        onmousedown="startDrag(event)"
+        onclick="toggleDefinition(this)">
+        <h3>Excellence</h3>
+        <p class="definition">
+          "Striving to exceed expectations and consistently deliver exceptional
+          results."
+        </p>
+      </div>
+
+      <div
+        id="innovation"
+        class="core-value"
+        onmousedown="startDrag(event)"
+        onclick="toggleDefinition(this)">
+        <h3>Innovation</h3>
+        <p class="definition">
+          "Challenging conventional thinking to find creative solutions and
+          drive continuous improvement."
+        </p>
+      </div>
+
+      <div
+        id="collaboration"
+        class="core-value"
+        onmousedown="startDrag(event)"
+        onclick="toggleDefinition(this)">
+        <h3>Collaboration</h3>
+        <p class="definition">
+          "Achieving shared goals through teamwork, communication, and mutual
+          respect."
+        </p>
+      </div>
+
+      <div
+        id="community"
+        class="core-value"
+        onmousedown="startDrag(event)"
+        onclick="toggleDefinition(this)">
+        <h3>Community</h3>
+        <p class="definition">
+          "Fostering a sense of belonging by creating spaces where people feel
+          supported, valued, and connected."
+        </p>
+      </div>
+    </div>
+
+    <script src="../scripts/core-values.js"></script>
+  </body>
+</html>
