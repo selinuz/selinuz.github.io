@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
 function arrangeInCustomLayout() {
   const values = document.querySelectorAll(".core-value");
   const positions = [
-    { x: window.innerWidth / 2, y: 200 }, // Center
-    { x: window.innerWidth / 2 - 200, y: 350 }, // Left
-    { x: window.innerWidth / 2 + 200, y: 350 }, // Right
-    { x: window.innerWidth / 2 - 200, y: 550 }, // Bottom Left
-    { x: window.innerWidth / 2 + 200, y: 550 }, // Bottom Right
+    { x: window.innerWidth / 2 - 600, y: window.innerHeight / 2 },
+    { x: window.innerWidth / 2 - 300, y: window.innerHeight / 2 },
+    { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+    { x: window.innerWidth / 2 + 600, y: window.innerHeight / 2 },
+    { x: window.innerWidth / 2 + 300, y: window.innerHeight / 2 },
   ];
 
   values.forEach((value, index) => {
@@ -75,6 +75,7 @@ function toggleDefinition(element) {
 }
 
 const activityConnections = [
+  // UBC CS
   {
     from: "ubc-cs",
     to: "excellence",
@@ -85,13 +86,120 @@ const activityConnections = [
     to: "leadership",
     text: "Awarded the KMILOT Award for exceptional leadership and academic achievement.",
   },
+
+  // WiCS
+  {
+    from: "wics",
+    to: "community",
+    text: "Organized events to foster a sense of belonging and support for underrepresented genders in computer science.",
+  },
+  {
+    from: "wics",
+    to: "collaboration",
+    text: "Worked closely with a team of five and tech sponsors to ensure smooth event execution.",
+  },
+  {
+    from: "wics",
+    to: "leadership",
+    text: "Led a team of 5 and managed relationships with sponsors, facilitating successful partnerships.",
+  },
+
+  // SAP
+  {
+    from: "sap",
+    to: "innovation",
+    text: "Automated overdue notifications in Jira, optimizing workflows and enhancing productivity.",
+  },
+  {
+    from: "sap",
+    to: "excellence",
+    text: "Created an SAP Analytics Cloud dashboard to maintain platform consistency.",
+  },
+  {
+    from: "sap",
+    to: "collaboration",
+    text: "Coordinated with 8 interns and a full-time team member on an internal LMS platform.",
+  },
+
+  // Pocket Pelvis
+  {
+    from: "pocket-pelvis",
+    to: "innovation",
+    text: "Integrated AR features with a 3D-printed model to enhance learning and engagement.",
+  },
+  {
+    from: "pocket-pelvis",
+    to: "collaboration",
+    text: "Collaborated with a team of six using Agile methodologies to deliver the project.",
+  },
+
+  // Feral Freedom
+  {
+    from: "feral-freedom",
+    to: "community",
+    text: "Developed a game inspired by a true story from your hometown, creating a meaningful connection.",
+  },
+  {
+    from: "feral-freedom",
+    to: "collaboration",
+    text: "Worked with a team of six using Agile methods to design and implement the game.",
+  },
+  {
+    from: "feral-freedom",
+    to: "innovation",
+    text: "Built a fully playable game in three months using OpenGL and creative gameplay mechanics.",
+  },
+
+  // YouCode
+  {
+    from: "youcode",
+    to: "excellence",
+    text: "Learned to use Figma as a drawing tool and applied this knowledge to web design.",
+  },
+  {
+    from: "youcode",
+    to: "innovation",
+    text: "Developed a fully functional website from scratch within 24 hours, showcasing creativity under time pressure.",
+  },
+  {
+    from: "youcode",
+    to: "collaboration",
+    text: "Worked with a team of five to deliver a high-quality project within tight deadlines.",
+  },
 ];
 
 // Store currently visible text boxes to toggle visibility
 const visibleTextBoxes = new Map();
 
 function arrangeActivityBoxes() {
-  const activityPositions = [{ id: "ubc-cs", x: 200, y: 100 }];
+  const activityPositions = [
+    {
+      id: "ubc-cs",
+      x: window.innerWidth / 2 - 500,
+      y: window.innerHeight / 2 + 200,
+    },
+    { id: "wics", x: window.innerWidth / 2, y: window.innerHeight / 2 - 300 },
+    {
+      id: "feral-freedom",
+      x: window.innerWidth / 2 + 500,
+      y: window.innerHeight / 2 - 300,
+    },
+    {
+      id: "sap",
+      x: window.innerWidth / 2 - 500,
+      y: window.innerHeight / 2 - 300,
+    },
+    {
+      id: "youcode",
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2 + 200,
+    },
+    {
+      id: "pocket-pelvis",
+      x: window.innerWidth / 2 + 500,
+      y: window.innerHeight / 2 + 200,
+    },
+  ];
 
   activityPositions.forEach(({ id, x, y }) => {
     const activity = document.getElementById(id);
@@ -187,6 +295,11 @@ function showActivityDetails(activityBox) {
   const activityId = activityBox.id;
   const connectionsMap = {
     "ubc-cs": ["leadership", "excellence"],
+    wics: ["community", "collaboration", "leadership"],
+    sap: ["innovation", "excellence", "collaboration"],
+    "pocket-pelvis": ["innovation", "collaboration"],
+    "feral-freedom": ["innovation", "collaboration", "community"],
+    youcode: ["excellence", "innovation", "collaboration"],
   };
 
   const connectedValues = connectionsMap[activityId] || [];
@@ -213,7 +326,7 @@ function showActivityDetails(activityBox) {
       const from = line.getAttribute("data-from");
       const to = line.getAttribute("data-to");
 
-      if (from === activityId || connectedValues.includes(to)) {
+      if (from === activityId) {
         line.classList.add("highlight");
       }
     });

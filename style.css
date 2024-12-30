@@ -1,10 +1,11 @@
 /* General Website Background */
 body {
   background-color: #070f2b;
-  color: #e4e8f0;
+  color: #ffffff;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 .body-text {
@@ -12,14 +13,13 @@ body {
 }
 
 .body-text h1 {
-  color: #e4e8f0;
-  user-select: none;
+  color: #ffffff;
 }
 
 /* Navigation Bar Styles */
 nav {
   background-color: #070f2b;
-  color: #e4e8f0;
+  color: #ffffff;
   padding: 18px 30px;
   display: flex;
   justify-content: space-between;
@@ -27,12 +27,6 @@ nav {
   border-bottom: 1px solid #1b1a55;
   position: relative;
   z-index: 1000;
-}
-
-nav .heading h4 {
-  margin: 0;
-  padding: 0 20px;
-  color: #e4e8f0;
 }
 
 /* Navigation Links */
@@ -49,7 +43,7 @@ nav .nav-links li {
 }
 
 nav .nav-links a {
-  color: #9290c3;
+  color: #ffffff;
   text-decoration: none;
   padding: 10px 18px;
   transition: background-color 0.3s, color 0.3s;
@@ -59,8 +53,8 @@ nav .nav-links a {
 nav .nav-links a.active,
 nav .nav-links a:hover {
   background-color: #1b1a55;
-  color: #e4e8f0;
-  border-radius: s5px;
+  color: #ffff;
+  border-radius: 5px;
 }
 
 /* Responsive Design */

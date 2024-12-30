@@ -2,34 +2,46 @@
   position: absolute;
   padding: 1rem;
   width: 150px;
-  background-color: #1b1a55;
-  color: #e4e8f0;
-  border: 1px solid #ddd;
+  background-color: #535c91;
+  color: #ffffff;
+  border: 1px solid #e4e8f0;
   border-radius: 10px;
   cursor: grab;
   text-align: center;
   transition: transform 0.2s, background-color 0.3s ease;
-  user-select: none;
+}
+
+.core-value-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: start;
+}
+
+.core-value-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: #ffffff;
 }
 
 .core-value:hover,
 .core-value.highlight {
-  background-color: #457e7e;
+  background-color: #4f5a6d;
+  border: 0px solid;
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
 .core-value h3 {
   margin: 0;
-  color: #e4e8f0;
-  user-select: none;
+  color: #ffffff;
 }
 
 .definition {
   display: none;
   margin-top: 0.5rem;
-  color: #e4e8f0;
-  user-select: none;
+  color: #ffffff;
 }
 
 .core-value.expanded .definition {
@@ -46,7 +58,7 @@
 }
 
 line {
-  stroke: #e4e8f0;
+  stroke: #ffffff;
   stroke-width: 2;
   pointer-events: auto;
 }
@@ -60,8 +72,8 @@ line {
 
 .transparent-line:hover,
 .transparent-line.highlight {
-  stroke: rgba(90, 165, 165, 0.7); /* Teal for hover and highlight */
-  stroke-width: 10;
+  stroke: #3e4756;
+  stroke-width: 8;
 }
 
 .activity-box {
@@ -69,8 +81,7 @@ line {
   padding: 1rem;
   width: 250px;
   background-color: #1b1a55;
-  border: 1px solid #ddd;
-  color: #e4e8f0;
+  color: #ffffff;
   border-radius: 10px;
   cursor: grab;
   text-align: center;
@@ -79,7 +90,7 @@ line {
 
 .activity-box:hover,
 .activity-box.highlight {
-  background-color: #457e7e;
+  background-color: #4f5a6d;
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
@@ -88,21 +99,26 @@ line {
 .activity-box .location,
 .activity-box .duration {
   margin: 0;
-  color: #e4e8f0;
+  color: #ffffff;
   transition: color 0.3s ease;
+}
+
+.activity-box .title {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .activity-box .location {
   margin-top: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
-  color: #d1d5db;
+  color: #ffffff;
 }
 
 .activity-box .duration {
   margin-top: 0.5rem;
   font-size: 0.8rem;
-  color: #b0bec5;
+  color: #ffffff;
 }
 
 .activity-box.expanded {
