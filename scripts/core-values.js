@@ -292,6 +292,7 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
 }
 
 function showActivityDetails(activityBox) {
+  toggleDefinition(activityBox);
   const activityId = activityBox.id;
   const connectionsMap = {
     "ubc-cs": ["leadership", "excellence"],
@@ -311,7 +312,7 @@ function showActivityDetails(activityBox) {
       elem.classList.remove("highlight");
     });
 
-  if (!isHighlighted) {
+  if (!isHighlighted && !isDragging) {
     activityBox.classList.add("highlight");
 
     connectedValues.forEach((coreValueId) => {

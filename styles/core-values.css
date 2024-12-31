@@ -121,8 +121,16 @@ line {
   color: #ffffff;
 }
 
-.activity-box.expanded {
-  cursor: default;
+.activity-box .description {
+  display: none;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  margin-bottom: -0.5rem;
+  color: #ffffff;
+}
+
+.activity-box.expanded .description {
+  display: block;
 }
 
 .line-text-box {
