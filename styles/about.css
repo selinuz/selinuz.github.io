@@ -1,0 +1,22 @@
+.about-page {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  text-align: left;
+  height: 80vh;
+  width: 60%;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.about-page h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.about-page p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
