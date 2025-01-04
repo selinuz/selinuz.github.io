@@ -10,9 +10,10 @@
 }
 
 .about-page h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: var(--white);
+  margin-top: 50px;
 }
 
 .about-page p {
