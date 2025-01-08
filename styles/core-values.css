@@ -1,5 +1,4 @@
 .core-value {
-  position: absolute;
   padding: 1rem;
   width: 150px;
   background-color: var(--steel-blue);
@@ -49,6 +48,16 @@
   display: block;
 }
 
+#map {
+  position: relative;
+  width: 98%;
+  height: 800px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
 #connections {
   position: absolute;
   top: 0;
@@ -79,7 +88,6 @@ line {
 }
 
 .activity-box {
-  position: absolute;
   padding: 1rem;
   width: 250px;
   background-color: var(--deep-indigo);
@@ -137,7 +145,6 @@ line {
 }
 
 .line-text-box {
-  position: absolute;
   background-color: var(--off-white);
   color: var(--very-dark-purple);
   padding: 10px;

@@ -6,24 +6,34 @@ let isDragging = false;
 document.addEventListener("DOMContentLoaded", () => {
   arrangeInCustomLayout();
   arrangeActivityBoxes();
+  setTimeout(() => {
+    updateConnections();
+  }, 100);
   document.addEventListener("mouseup", onMouseUp);
 });
 
 function arrangeInCustomLayout() {
   const values = document.querySelectorAll(".core-value");
+  const map = document.getElementById("map");
+
+  const mapRect = map.getBoundingClientRect();
+  const centerX = mapRect.width / 2;
+  const centerY = mapRect.height / 2;
+  const xOffset = mapRect.width / 5;
+
   const positions = [
-    { x: window.innerWidth / 2 - 600, y: window.innerHeight / 2 },
-    { x: window.innerWidth / 2 - 300, y: window.innerHeight / 2 },
-    { x: window.innerWidth / 2, y: window.innerHeight / 2 },
-    { x: window.innerWidth / 2 + 600, y: window.innerHeight / 2 },
-    { x: window.innerWidth / 2 + 300, y: window.innerHeight / 2 },
+    { x: centerX - 2 * xOffset, y: centerY },
+    { x: centerX - xOffset, y: centerY },
+    { x: centerX, y: centerY },
+    { x: centerX + xOffset, y: centerY },
+    { x: centerX + 2 * xOffset, y: centerY },
   ];
 
   values.forEach((value, index) => {
     if (positions[index]) {
       value.style.position = "absolute";
       value.style.left = `${positions[index].x - value.offsetWidth / 2}px`;
-      value.style.top = `${positions[index].y}px`;
+      value.style.top = `${positions[index].y - value.offsetHeight / 2}px`;
     }
   });
 }
@@ -46,13 +56,25 @@ function startDrag(event) {
 
 function dragMove(event) {
   if (!draggedElement) return;
-  const x = event.clientX - offsetX;
-  const y = event.clientY - offsetY;
+
+  const parent = document.getElementById("map");
+  const parentRect = parent.getBoundingClientRect();
+  const scrollOffset = window.scrollY;
+  const elementHeight = draggedElement.offsetHeight;
+  const elementWidth = draggedElement.offsetWidth;
+
+  let x = event.clientX - offsetX - parentRect.left;
+  let y = event.clientY - offsetY + scrollOffset - parent.offsetTop;
+
+  x = Math.max(0, Math.min(x, parentRect.width - elementWidth));
+  y = Math.max(0, Math.min(y, parentRect.height - elementHeight));
 
   draggedElement.style.left = `${x}px`;
   draggedElement.style.top = `${y}px`;
+
   isDragging = true;
   updateConnections();
+
   visibleTextBoxes.forEach((textBox, lineElement) => {
     textBox.remove();
     visibleTextBoxes.delete(lineElement);
@@ -209,8 +231,6 @@ function arrangeActivityBoxes() {
       activity.style.top = `${y}px`;
     }
   });
-
-  updateConnections();
 }
 
 function updateConnections() {
@@ -256,7 +276,6 @@ function updateConnections() {
       transparentLine.classList.add("transparent-line");
 
       transparentLine.addEventListener("click", (event) => {
-        console.log("Line clicked!");
         toggleLineText(event, x1, y1, x2, y2, text);
       });
 
