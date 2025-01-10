@@ -26,8 +26,6 @@ section#contact {
 
 .contact-page p {
   font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
   color: var(--off-white);
   text-align: left;
 }
@@ -41,17 +39,6 @@ section#contact {
 .contact-info .contact-container {
   display: flex;
   justify-content: flex-start;
-}
-
-.contact-info .contact-line img {
-  width: 40px;
-  height: 40px;
-  transition: transform 0.3s, filter 0.3s;
-}
-
-.contact-info .contact-line a:hover img {
-  transform: scale(1.2);
-  filter: brightness(1.2);
 }
 
 .contact-form {
@@ -83,6 +70,9 @@ section#contact {
   color: var(--off-white);
   outline: none;
   transition: border-color 0.3s ease;
+  min-width: 50%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -95,7 +85,7 @@ section#contact {
   font-size: 1.2rem;
   font-weight: bold;
   color: var(--white);
-  background-color: var(--lavender);
+  background-color: var(--steel-blue);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -103,8 +93,8 @@ section#contact {
 }
 
 .submit-button:hover {
-  background-color: var(--steel-blue);
   transform: translateY(-2px);
+  background-color: var(--lavender);
 }
 
 @media (max-width: 768px) {
