@@ -34,6 +34,7 @@ body {
 }
 
 .body-text h1 {
+  font-size: 2rem;
   color: var(--white);
 }
 

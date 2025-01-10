@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styles/home.css" />
     <link rel="stylesheet" href="./styles/about.css" />
     <link rel="stylesheet" href="./styles/core-values.css" />
+    <link rel="stylesheet" href="./styles/contact.css" />
   </head>
 
   <body>
@@ -16,6 +17,7 @@
         <li><a href="#home">Welcome</a></li>
         <li><a href="#about">Who I Am</a></li>
         <li><a href="#values">My Values</a></li>
+        <li><a href="#contact">Get in Touch</a></li>
       </ul>
     </nav>
 
@@ -36,7 +38,7 @@
             <a href="https://github.com/selinuz" target="_blank">
               <img src="./assets/github.svg" alt="GitHub" />
             </a>
-            <a href="mailto:eceselinuz2@gmail.com">
+            <a href="mailto:uz.eceselin@gmail.com">
               <img src="./assets/mail.svg" alt="Email" />
             </a>
           </div>
@@ -77,10 +79,10 @@
 
     <!-- Core Values -->
     <section id="values" class="section">
-      <div class="body-text">
-        <div id="map">
-          <h1>Core Values Map</h1>
+      <div id="map-container">
+        <div class="map-label">Values in Action</div>
 
+        <div id="map">
           <svg
             id="connections"
             width="100%"
@@ -296,6 +298,53 @@
       </div>
 
       <script src="./scripts/core-values.js"></script>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="contact-page">
+        <!-- Contact Info Column -->
+        <div class="contact-info">
+          <h1>Let's Chat!</h1>
+          <p>Feel free to send me an email or connect via LinkedIn.</p>
+          <div class="contact-container">
+            <div class="contact-line">
+              <a href="https://www.linkedin.com/in/selin-uz/" target="_blank">
+                <img src="./assets/linkedin.svg" alt="LinkedIn" />
+              </a>
+              <a href="https://github.com/selinuz" target="_blank">
+                <img src="./assets/github.svg" alt="GitHub" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form Column -->
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/xdkkykql"
+          method="POST">
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Enter your message"
+              rows="5"
+              required></textarea>
+          </div>
+          <button type="submit" class="submit-button">Send Message</button>
+        </form>
+      </div>
     </section>
   </body>
 </html>

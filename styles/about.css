@@ -18,6 +18,20 @@
 
 .about-page p {
   font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: var(--off-white);
+  text-align: justify;
+}
+
+.about-page a {
+  color: var(--lavender);
+  text-decoration: none;
+  border-bottom: 2px solid var(--lavender);
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+.about-page a:hover {
+  color: var(--off-white);
+  border-bottom: 2px solid var(--off-white);
 }

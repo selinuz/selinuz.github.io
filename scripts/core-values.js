@@ -194,32 +194,43 @@ const activityConnections = [
 const visibleTextBoxes = new Map();
 
 function arrangeActivityBoxes() {
+  const map = document.getElementById("map"); // Reference to the map container
+  const mapRect = map.getBoundingClientRect(); // Get the dimensions of the map
+  const centerX = mapRect.width / 2; // Horizontal center of the map
+  const centerY = mapRect.height / 2; // Vertical center of the map
+  const xOffset = 250; // Horizontal spacing between boxes
+  const yOffset = 250; // Vertical spacing between rows
+
   const activityPositions = [
     {
       id: "ubc-cs",
-      x: window.innerWidth / 2 - 500,
-      y: window.innerHeight / 2 + 200,
+      x: centerX - 2 * xOffset,
+      y: centerY + yOffset,
     },
-    { id: "wics", x: window.innerWidth / 2, y: window.innerHeight / 2 - 300 },
+    {
+      id: "wics",
+      x: centerX,
+      y: centerY - yOffset,
+    },
     {
       id: "feral-freedom",
-      x: window.innerWidth / 2 + 500,
-      y: window.innerHeight / 2 - 300,
+      x: centerX + 2 * xOffset,
+      y: centerY - yOffset,
     },
     {
       id: "sap",
-      x: window.innerWidth / 2 - 500,
-      y: window.innerHeight / 2 - 300,
+      x: centerX - 2 * xOffset,
+      y: centerY - yOffset,
     },
     {
       id: "youcode",
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2 + 200,
+      x: centerX,
+      y: centerY + yOffset,
     },
     {
       id: "pocket-pelvis",
-      x: window.innerWidth / 2 + 500,
-      y: window.innerHeight / 2 + 200,
+      x: centerX + 2 * xOffset,
+      y: centerY + yOffset,
     },
   ];
 
@@ -227,8 +238,8 @@ function arrangeActivityBoxes() {
     const activity = document.getElementById(id);
     if (activity) {
       activity.style.position = "absolute";
-      activity.style.left = `${x - activity.offsetWidth / 2}px`;
-      activity.style.top = `${y}px`;
+      activity.style.left = `${x - activity.offsetWidth / 2}px`; // Center horizontally
+      activity.style.top = `${y - activity.offsetHeight / 2}px`; // Center vertically
     }
   });
 }
