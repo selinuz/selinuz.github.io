@@ -235,6 +235,12 @@ function arrangeActivityBoxes() {
 
 function updateConnections() {
   const svg = document.getElementById("connections");
+  const map = document.getElementById("map");
+  const mapRect = map.getBoundingClientRect();
+
+  svg.setAttribute("width", mapRect.width);
+  svg.setAttribute("height", mapRect.height);
+
   svg.innerHTML = "";
 
   activityConnections.forEach(({ from, to, text }) => {
@@ -245,10 +251,10 @@ function updateConnections() {
       const fromRect = fromElem.getBoundingClientRect();
       const toRect = toElem.getBoundingClientRect();
 
-      const x1 = fromRect.left + fromRect.width / 2;
-      const y1 = fromRect.top + fromRect.height / 2;
-      const x2 = toRect.left + toRect.width / 2;
-      const y2 = toRect.top + toRect.height / 2;
+      const x1 = fromRect.left + fromRect.width / 2 - mapRect.left;
+      const y1 = fromRect.top + fromRect.height / 2 - mapRect.top;
+      const x2 = toRect.left + toRect.width / 2 - mapRect.left;
+      const y2 = toRect.top + toRect.height / 2 - mapRect.top;
 
       console.log(`Creating line from ${from} to ${to}`);
 
@@ -288,6 +294,9 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
   const lineElement = event.target;
   const existingTextBox = visibleTextBoxes.get(lineElement);
 
+  const map = document.getElementById("map");
+  const mapRect = map.getBoundingClientRect();
+
   if (existingTextBox) {
     existingTextBox.remove();
     visibleTextBoxes.delete(lineElement);
@@ -295,8 +304,11 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
     const textBox = document.createElement("div");
     textBox.className = "line-text-box";
     textBox.innerText = text;
-    const midX = (x1 + x2) / 2;
-    const midY = (y1 + y2) / 2;
+
+    const midX = (x1 + x2) / 2 - mapRect.left;
+    const midY = (y1 + y2) / 2 - mapRect.top;
+
+    textBox.style.position = "absolute";
     textBox.style.left = `${midX}px`;
     textBox.style.top = `${midY}px`;
 
@@ -305,7 +317,7 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
       visibleTextBoxes.delete(lineElement);
     });
 
-    document.body.appendChild(textBox);
+    map.appendChild(textBox);
     visibleTextBoxes.set(lineElement, textBox);
   }
 }
