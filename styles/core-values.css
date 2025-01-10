@@ -186,3 +186,62 @@ line {
   line-height: 1.4;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .core-value {
+    width: 120px;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .core-value-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .core-value h3 {
+    font-size: 1rem;
+  }
+
+  #map-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  #map {
+    height: 600px;
+  }
+
+  .map-label {
+    font-size: 1.2rem;
+    padding: 15px 10px;
+    width: 80%;
+  }
+
+  .activity-box {
+    width: 200px;
+    padding: 0.8rem;
+  }
+
+  .activity-box .title {
+    font-size: 1rem;
+  }
+
+  .activity-box .location {
+    font-size: 0.9rem;
+  }
+
+  .activity-box .duration {
+    font-size: 0.75rem;
+  }
+
+  .activity-box .description {
+    font-size: 0.7rem;
+  }
+
+  .line-text-box {
+    width: 150px;
+    font-size: 0.8rem;
+  }
+}
