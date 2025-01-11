@@ -81,11 +81,11 @@
 #zoom-controls button {
   width: 40px;
   height: 40px;
-  background-color: var(--lavender);
-  color: var(--very-dark-purple);
-  border: none;
-  border-radius: 50%;
-  font-size: 1.2rem;
+  background-color: var(--very-dark-purple);
+  color: var(--off-white);
+  border-radius: 30%;
+  font-size: 1.5rem;
+  font-weight: bold;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.2s;
@@ -94,6 +94,7 @@
 #zoom-controls button:hover {
   background-color: var(--off-white);
   transform: scale(1.1);
+  color: var(--very-dark-purple);
 }
 
 .map-label {

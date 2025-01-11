@@ -3,9 +3,10 @@ let offsetX = 0;
 let offsetY = 0;
 let isDragging = false;
 let zoomLevel = 1;
+const visibleTextBoxes = new Map();
 
 document.addEventListener("DOMContentLoaded", () => {
-  arrangeInCustomLayout();
+  arrangeCoreValues();
   arrangeActivityBoxes();
   setTimeout(() => {
     updateConnections();
@@ -28,7 +29,7 @@ function adjustZoom(delta) {
   updateConnections();
 }
 
-function arrangeInCustomLayout() {
+function arrangeCoreValues() {
   const values = document.querySelectorAll(".core-value");
   const map = document.getElementById("map");
 
@@ -73,16 +74,25 @@ function startDrag(event) {
 function dragMove(event) {
   if (!draggedElement) return;
 
+  const mapContent = document.getElementById("map-content");
+  const mapContentRect = mapContent.getBoundingClientRect();
+
+  const adjustedX = (event.clientX - mapContentRect.left - offsetX) / zoomLevel;
+  const adjustedY = (event.clientY - mapContentRect.top - offsetY) / zoomLevel;
+
   const parent = document.getElementById("map");
   const parentRect = parent.getBoundingClientRect();
-  const elementHeight = draggedElement.offsetHeight;
-  const elementWidth = draggedElement.offsetWidth;
+  const elementWidth = draggedElement.offsetWidth / zoomLevel;
+  const elementHeight = draggedElement.offsetHeight / zoomLevel;
 
-  let x = event.clientX - offsetX - parentRect.left;
-  let y = event.clientY - offsetY - parentRect.top;
-
-  x = Math.max(0, Math.min(x, parentRect.width - elementWidth));
-  y = Math.max(0, Math.min(y, parentRect.height - elementHeight));
+  let x = Math.max(
+    0,
+    Math.min(adjustedX, (parentRect.width - elementWidth) / zoomLevel)
+  );
+  let y = Math.max(
+    0,
+    Math.min(adjustedY, (parentRect.height - elementHeight) / zoomLevel)
+  );
 
   draggedElement.style.left = `${x}px`;
   draggedElement.style.top = `${y}px`;
@@ -205,9 +215,6 @@ const activityConnections = [
   },
 ];
 
-// Store currently visible text boxes to toggle visibility
-const visibleTextBoxes = new Map();
-
 function arrangeActivityBoxes() {
   const map = document.getElementById("map"); // Reference to the map container
   const mapRect = map.getBoundingClientRect(); // Get the dimensions of the map
@@ -314,11 +321,6 @@ function updateConnections() {
       svg.appendChild(transparentLine);
     }
   });
-}
-
-function toggleMenu() {
-  const nav = document.querySelector("nav");
-  nav.classList.toggle("open");
 }
 
 function toggleLineText(event, x1, y1, x2, y2, text) {
