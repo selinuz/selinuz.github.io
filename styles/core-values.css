@@ -67,8 +67,36 @@
   overflow: hidden;
 }
 
+/* Zoom controls styling */
+#zoom-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  z-index: 20;
+}
+
+#zoom-controls button {
+  width: 40px;
+  height: 40px;
+  background-color: var(--lavender);
+  color: var(--very-dark-purple);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#zoom-controls button:hover {
+  background-color: var(--off-white);
+  transform: scale(1.1);
+}
+
 .map-label {
-  position: relative;
   background-color: rgba(0, 0, 0, 0.3);
   border: 0.5px solid var(--off-white);
   border-bottom: none;
@@ -100,7 +128,7 @@ line {
 
 .transparent-line {
   stroke: transparent;
-  stroke-width: 10; /* Larger clickable area */
+  stroke-width: 10;
   pointer-events: stroke;
   cursor: pointer;
 }

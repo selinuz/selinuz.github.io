@@ -2,6 +2,7 @@ let draggedElement = null;
 let offsetX = 0;
 let offsetY = 0;
 let isDragging = false;
+let zoomLevel = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
   arrangeInCustomLayout();
@@ -9,7 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     updateConnections();
   }, 100);
+
+  const zoomInButton = document.getElementById("zoom-in");
+  const zoomOutButton = document.getElementById("zoom-out");
+
+  zoomInButton.addEventListener("click", () => adjustZoom(0.1));
+  zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
 });
+
+function adjustZoom(delta) {
+  // Limit zoom level between 0.5 and 2.0
+  zoomLevel = Math.min(2.0, Math.max(0.5, zoomLevel + delta));
+
+  const mapContent = document.getElementById("map-content");
+  mapContent.style.transform = `scale(${zoomLevel})`;
+
+  updateConnections();
+}
 
 function arrangeInCustomLayout() {
   const values = document.querySelectorAll(".core-value");
