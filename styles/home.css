@@ -52,9 +52,8 @@
 @media (max-width: 768px) {
   .landing-page {
     width: 90%;
-    height: auto;
-    margin: 20px auto;
-    text-align: center;
+    height: 100vh;
+    margin: 0px auto;
   }
 
   .landing-page h3 {

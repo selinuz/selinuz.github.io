@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     updateConnections();
   }, 100);
-  document.addEventListener("mouseup", onMouseUp);
 });
 
 function arrangeInCustomLayout() {
@@ -59,12 +58,11 @@ function dragMove(event) {
 
   const parent = document.getElementById("map");
   const parentRect = parent.getBoundingClientRect();
-  const scrollOffset = window.scrollY;
   const elementHeight = draggedElement.offsetHeight;
   const elementWidth = draggedElement.offsetWidth;
 
   let x = event.clientX - offsetX - parentRect.left;
-  let y = event.clientY - offsetY + scrollOffset - parent.offsetTop;
+  let y = event.clientY - offsetY - parentRect.top;
 
   x = Math.max(0, Math.min(x, parentRect.width - elementWidth));
   y = Math.max(0, Math.min(y, parentRect.height - elementHeight));
@@ -299,6 +297,11 @@ function updateConnections() {
       svg.appendChild(transparentLine);
     }
   });
+}
+
+function toggleMenu() {
+  const nav = document.querySelector("nav");
+  nav.classList.toggle("open");
 }
 
 function toggleLineText(event, x1, y1, x2, y2, text) {
