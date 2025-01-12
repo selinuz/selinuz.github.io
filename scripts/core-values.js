@@ -268,13 +268,10 @@ function arrangeActivityBoxes() {
 
 function updateConnections() {
   const svg = document.getElementById("connections");
-  const map = document.getElementById("map");
-  const mapRect = map.getBoundingClientRect();
+  const mapContent = document.getElementById("map-content");
+  const mapRect = mapContent.getBoundingClientRect();
 
-  svg.setAttribute("width", mapRect.width);
-  svg.setAttribute("height", mapRect.height);
-
-  svg.innerHTML = "";
+  svg.innerHTML = ""; // Clear existing lines
 
   activityConnections.forEach(({ from, to, text }) => {
     const fromElem = document.getElementById(from);
@@ -284,12 +281,11 @@ function updateConnections() {
       const fromRect = fromElem.getBoundingClientRect();
       const toRect = toElem.getBoundingClientRect();
 
-      const x1 = fromRect.left + fromRect.width / 2 - mapRect.left;
-      const y1 = fromRect.top + fromRect.height / 2 - mapRect.top;
-      const x2 = toRect.left + toRect.width / 2 - mapRect.left;
-      const y2 = toRect.top + toRect.height / 2 - mapRect.top;
-
-      console.log(`Creating line from ${from} to ${to}`);
+      const x1 =
+        (fromRect.left + fromRect.width / 2 - mapRect.left) / zoomLevel;
+      const y1 = (fromRect.top + fromRect.height / 2 - mapRect.top) / zoomLevel;
+      const x2 = (toRect.left + toRect.width / 2 - mapRect.left) / zoomLevel;
+      const y2 = (toRect.top + toRect.height / 2 - mapRect.top) / zoomLevel;
 
       const visibleLine = document.createElementNS(
         "http://www.w3.org/2000/svg",
@@ -326,9 +322,8 @@ function updateConnections() {
 function toggleLineText(event, x1, y1, x2, y2, text) {
   const lineElement = event.target;
   const existingTextBox = visibleTextBoxes.get(lineElement);
-
-  const map = document.getElementById("map");
-  const mapRect = map.getBoundingClientRect();
+  const mapContent = document.getElementById("map-content");
+  const mapRect = mapContent.getBoundingClientRect();
 
   if (existingTextBox) {
     existingTextBox.remove();
@@ -338,8 +333,8 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
     textBox.className = "line-text-box";
     textBox.innerText = text;
 
-    const midX = (x1 + x2) / 2 - mapRect.left;
-    const midY = (y1 + y2) / 2 - mapRect.top;
+    const midX = (x1 + x2) / 2;
+    const midY = (y1 + y2) / 2;
 
     textBox.style.position = "absolute";
     textBox.style.left = `${midX}px`;
@@ -350,7 +345,7 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
       visibleTextBoxes.delete(lineElement);
     });
 
-    map.appendChild(textBox);
+    document.getElementById("map-content").appendChild(textBox);
     visibleTextBoxes.set(lineElement, textBox);
   }
 }
