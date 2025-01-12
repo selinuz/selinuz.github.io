@@ -67,6 +67,12 @@
   border: 0.5px solid var(--off-white);
   border-radius: 10px;
   overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+#map:active {
+  cursor: grabbing;
 }
 
 #map-content {
@@ -289,10 +295,7 @@ line {
     font-size: 0.7rem;
   }
 
-  .activity-box .location {
-    font-size: 0.6rem;
-  }
-
+  .activity-box .location,
   .activity-box .duration {
     font-size: 0.6rem;
   }

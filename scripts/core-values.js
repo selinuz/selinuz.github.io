@@ -1,7 +1,14 @@
 let draggedElement = null;
 let offsetX = 0;
 let offsetY = 0;
-let isDragging = false;
+let isDraggingElement = false;
+
+let mapDragStartX = 0;
+let mapDragStartY = 0;
+let mapOffsetX = 0;
+let mapOffsetY = 0;
+let isMapDragging = false;
+
 let zoomLevel = 1;
 const visibleTextBoxes = new Map();
 const activityConnections = [
@@ -110,15 +117,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   zoomInButton.addEventListener("click", () => adjustZoom(0.1));
   zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
+
+  const map = document.getElementById("map");
+  map.addEventListener("mousedown", startMapDrag);
+
+  window.addEventListener("resize", () => {
+    arrangeCoreValues();
+    arrangeActivityBoxes();
+    updateConnections();
+  });
 });
 
 function adjustZoom(delta) {
-  // Limit zoom level between 0.5 and 2.0
   zoomLevel = Math.min(2.0, Math.max(0.5, zoomLevel + delta));
-
   const mapContent = document.getElementById("map-content");
   mapContent.style.transform = `scale(${zoomLevel})`;
-
   updateConnections();
 }
 
@@ -164,7 +177,7 @@ function dragMove(event) {
   draggedElement.style.left = `${x}px`;
   draggedElement.style.top = `${y}px`;
 
-  isDragging = true;
+  isDraggingElement = true;
   updateConnections();
 
   visibleTextBoxes.forEach((textBox, lineElement) => {
@@ -181,8 +194,52 @@ function stopDrag() {
   updateConnections();
 }
 
+function startMapDrag(event) {
+  if (
+    event.target.closest(".core-value") ||
+    event.target.closest(".activity-box")
+  ) {
+    return;
+  }
+
+  isMapDragging = true;
+  mapDragStartX = event.clientX - mapOffsetX;
+  mapDragStartY = event.clientY - mapOffsetY;
+
+  document.addEventListener("mousemove", dragMap);
+  document.addEventListener("mouseup", stopMapDrag);
+
+  const mapContent = document.getElementById("map-content");
+  mapContent.style.cursor = "grabbing";
+
+  event.preventDefault();
+}
+
+function dragMap(event) {
+  if (!isMapDragging) return;
+
+  const mapContent = document.getElementById("map-content");
+  mapOffsetX = event.clientX - mapDragStartX;
+  mapOffsetY = event.clientY - mapDragStartY;
+
+  mapContent.style.transform = `translate(${mapOffsetX}px, ${mapOffsetY}px) scale(${zoomLevel})`;
+  updateConnections();
+}
+
+function stopMapDrag() {
+  if (!isMapDragging) return;
+
+  isMapDragging = false;
+
+  const mapContent = document.getElementById("map-content");
+  mapContent.style.cursor = "grab";
+
+  document.removeEventListener("mousemove", dragMap);
+  document.removeEventListener("mouseup", stopMapDrag);
+}
+
 function toggleDefinition(element) {
-  if (!isDragging) {
+  if (!isDraggingElement) {
     element.classList.toggle("expanded");
     updateConnections();
   }
@@ -295,7 +352,7 @@ function showActivityDetails(activityBox) {
       elem.classList.remove("highlight");
     });
 
-  if (!isHighlighted && !isDragging) {
+  if (!isHighlighted && !isDraggingElement) {
     activityBox.classList.add("highlight");
 
     connectedValues.forEach((coreValueId) => {
@@ -324,7 +381,7 @@ function arrangeActivityBoxes() {
   const centerY = mapRect.height / 2;
 
   const isSmallScreen = window.innerWidth <= 768;
-  const xOffset = isSmallScreen ? 100 : 250;
+  const xOffset = isSmallScreen ? mapRect.width / 5.5 : mapRect.width / 6;
   const yOffset = isSmallScreen ? 150 : 250;
 
   const activityPositions = [
