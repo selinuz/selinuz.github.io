@@ -232,15 +232,20 @@ line {
     width: 100px;
     padding: 0.6rem;
     font-size: 0.8rem;
+    margin: 5px;
   }
 
   .core-value-icon {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 
   .core-value h3 {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+  }
+
+  .core-value .definition {
+    font-size: 0.6rem;
   }
 
   #map-container {
@@ -252,7 +257,7 @@ line {
   }
 
   #map {
-    height: 70vh;
+    height: 60vh;
     margin: 0 auto;
   }
 
@@ -265,7 +270,6 @@ line {
   #zoom-controls {
     bottom: 10px;
     top: auto;
-    flex-direction: column;
     right: 10px;
   }
 
@@ -282,15 +286,19 @@ line {
   }
 
   .activity-box .title {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 
   .activity-box .location {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
   }
 
   .activity-box .duration {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+  }
+
+  .activity-box .description {
+    font-size: 0.5rem;
   }
 
   .line-text-box {

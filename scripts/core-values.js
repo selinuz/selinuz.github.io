@@ -4,123 +4,6 @@ let offsetY = 0;
 let isDragging = false;
 let zoomLevel = 1;
 const visibleTextBoxes = new Map();
-
-document.addEventListener("DOMContentLoaded", () => {
-  arrangeCoreValues();
-  arrangeActivityBoxes();
-  setTimeout(() => {
-    updateConnections();
-  }, 100);
-
-  const zoomInButton = document.getElementById("zoom-in");
-  const zoomOutButton = document.getElementById("zoom-out");
-
-  zoomInButton.addEventListener("click", () => adjustZoom(0.1));
-  zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
-});
-
-function adjustZoom(delta) {
-  // Limit zoom level between 0.5 and 2.0
-  zoomLevel = Math.min(2.0, Math.max(0.5, zoomLevel + delta));
-
-  const mapContent = document.getElementById("map-content");
-  mapContent.style.transform = `scale(${zoomLevel})`;
-
-  updateConnections();
-}
-
-function arrangeCoreValues() {
-  const values = document.querySelectorAll(".core-value");
-  const map = document.getElementById("map");
-
-  const mapRect = map.getBoundingClientRect();
-  const centerX = mapRect.width / 2;
-  const centerY = mapRect.height / 2;
-  const xOffset = mapRect.width / 5;
-
-  const positions = [
-    { x: centerX - 2 * xOffset, y: centerY },
-    { x: centerX - xOffset, y: centerY },
-    { x: centerX, y: centerY },
-    { x: centerX + xOffset, y: centerY },
-    { x: centerX + 2 * xOffset, y: centerY },
-  ];
-
-  values.forEach((value, index) => {
-    if (positions[index]) {
-      value.style.position = "absolute";
-      value.style.left = `${positions[index].x - value.offsetWidth / 2}px`;
-      value.style.top = `${positions[index].y - value.offsetHeight / 2}px`;
-    }
-  });
-}
-
-function startDrag(event) {
-  draggedElement =
-    event.target.closest(".core-value") ||
-    event.target.closest(".activity-box");
-  if (!draggedElement) return;
-
-  const rect = draggedElement.getBoundingClientRect();
-  offsetX = event.clientX - rect.left;
-  offsetY = event.clientY - rect.top;
-  isDragging = false;
-
-  document.addEventListener("mousemove", dragMove);
-  document.addEventListener("mouseup", stopDrag);
-  event.preventDefault();
-}
-
-function dragMove(event) {
-  if (!draggedElement) return;
-
-  const mapContent = document.getElementById("map-content");
-  const mapContentRect = mapContent.getBoundingClientRect();
-
-  const adjustedX = (event.clientX - mapContentRect.left - offsetX) / zoomLevel;
-  const adjustedY = (event.clientY - mapContentRect.top - offsetY) / zoomLevel;
-
-  const parent = document.getElementById("map");
-  const parentRect = parent.getBoundingClientRect();
-  const elementWidth = draggedElement.offsetWidth / zoomLevel;
-  const elementHeight = draggedElement.offsetHeight / zoomLevel;
-
-  let x = Math.max(
-    0,
-    Math.min(adjustedX, (parentRect.width - elementWidth) / zoomLevel)
-  );
-  let y = Math.max(
-    0,
-    Math.min(adjustedY, (parentRect.height - elementHeight) / zoomLevel)
-  );
-
-  draggedElement.style.left = `${x}px`;
-  draggedElement.style.top = `${y}px`;
-
-  isDragging = true;
-  updateConnections();
-
-  visibleTextBoxes.forEach((textBox, lineElement) => {
-    textBox.remove();
-    visibleTextBoxes.delete(lineElement);
-  });
-}
-
-function stopDrag() {
-  if (!draggedElement) return;
-  document.removeEventListener("mousemove", dragMove);
-  document.removeEventListener("mouseup", stopDrag);
-  draggedElement = null;
-  updateConnections();
-}
-
-function toggleDefinition(element) {
-  if (!isDragging) {
-    element.classList.toggle("expanded");
-    updateConnections();
-  }
-}
-
 const activityConnections = [
   // UBC CS
   {
@@ -215,55 +98,94 @@ const activityConnections = [
   },
 ];
 
-function arrangeActivityBoxes() {
-  const map = document.getElementById("map"); // Reference to the map container
-  const mapRect = map.getBoundingClientRect(); // Get the dimensions of the map
-  const centerX = mapRect.width / 2; // Horizontal center of the map
-  const centerY = mapRect.height / 2; // Vertical center of the map
-  const xOffset = 250; // Horizontal spacing between boxes
-  const yOffset = 250; // Vertical spacing between rows
+document.addEventListener("DOMContentLoaded", () => {
+  arrangeCoreValues();
+  arrangeActivityBoxes();
+  setTimeout(() => {
+    updateConnections();
+  }, 100);
 
-  const activityPositions = [
-    {
-      id: "ubc-cs",
-      x: centerX - 2 * xOffset,
-      y: centerY + yOffset,
-    },
-    {
-      id: "wics",
-      x: centerX,
-      y: centerY - yOffset,
-    },
-    {
-      id: "feral-freedom",
-      x: centerX + 2 * xOffset,
-      y: centerY - yOffset,
-    },
-    {
-      id: "sap",
-      x: centerX - 2 * xOffset,
-      y: centerY - yOffset,
-    },
-    {
-      id: "youcode",
-      x: centerX,
-      y: centerY + yOffset,
-    },
-    {
-      id: "pocket-pelvis",
-      x: centerX + 2 * xOffset,
-      y: centerY + yOffset,
-    },
-  ];
+  const zoomInButton = document.getElementById("zoom-in");
+  const zoomOutButton = document.getElementById("zoom-out");
 
-  activityPositions.forEach(({ id, x, y }) => {
-    const activity = document.getElementById(id);
-    if (activity) {
-      activity.style.position = "absolute";
-      activity.style.left = `${x - activity.offsetWidth / 2}px`; // Center horizontally
-      activity.style.top = `${y - activity.offsetHeight / 2}px`; // Center vertically
-    }
+  zoomInButton.addEventListener("click", () => adjustZoom(0.1));
+  zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
+});
+
+function adjustZoom(delta) {
+  // Limit zoom level between 0.5 and 2.0
+  zoomLevel = Math.min(2.0, Math.max(0.5, zoomLevel + delta));
+
+  const mapContent = document.getElementById("map-content");
+  mapContent.style.transform = `scale(${zoomLevel})`;
+
+  updateConnections();
+}
+
+function startDrag(event) {
+  draggedElement =
+    event.target.closest(".core-value") ||
+    event.target.closest(".activity-box");
+  if (!draggedElement) return;
+
+  const rect = draggedElement.getBoundingClientRect();
+  offsetX = event.clientX - rect.left;
+  offsetY = event.clientY - rect.top;
+  isDragging = false;
+
+  document.addEventListener("mousemove", dragMove);
+  document.addEventListener("mouseup", stopDrag);
+  event.preventDefault();
+}
+
+function dragMove(event) {
+  if (!draggedElement) return;
+
+  const mapContent = document.getElementById("map-content");
+  const mapContentRect = mapContent.getBoundingClientRect();
+
+  const adjustedX = (event.clientX - mapContentRect.left - offsetX) / zoomLevel;
+  const adjustedY = (event.clientY - mapContentRect.top - offsetY) / zoomLevel;
+
+  const parent = document.getElementById("map");
+  const parentRect = parent.getBoundingClientRect();
+  const elementWidth = draggedElement.offsetWidth / zoomLevel;
+  const elementHeight = draggedElement.offsetHeight / zoomLevel;
+
+  let x = Math.max(
+    0,
+    Math.min(adjustedX, (parentRect.width - elementWidth) / zoomLevel)
+  );
+  let y = Math.max(
+    0,
+    Math.min(adjustedY, (parentRect.height - elementHeight) / zoomLevel)
+  );
+
+  draggedElement.style.left = `${x}px`;
+  draggedElement.style.top = `${y}px`;
+
+  isDragging = true;
+  updateConnections();
+
+  visibleTextBoxes.forEach((textBox, lineElement) => {
+    textBox.remove();
+    visibleTextBoxes.delete(lineElement);
   });
+}
+
+function stopDrag() {
+  if (!draggedElement) return;
+  document.removeEventListener("mousemove", dragMove);
+  document.removeEventListener("mouseup", stopDrag);
+  draggedElement = null;
+  updateConnections();
+}
+
+function toggleDefinition(element) {
+  if (!isDragging) {
+    element.classList.toggle("expanded");
+    updateConnections();
+  }
 }
 
 function updateConnections() {
@@ -393,4 +315,61 @@ function showActivityDetails(activityBox) {
       }
     });
   }
+}
+
+function arrangeActivityBoxes() {
+  const map = document.getElementById("map-content");
+  const mapRect = map.getBoundingClientRect();
+  const centerX = mapRect.width / 2;
+  const centerY = mapRect.height / 2;
+
+  const isSmallScreen = window.innerWidth <= 768;
+  const xOffset = isSmallScreen ? 100 : 250;
+  const yOffset = isSmallScreen ? 150 : 250;
+
+  const activityPositions = [
+    { id: "ubc-cs", x: centerX - 2 * xOffset, y: centerY + yOffset },
+    { id: "wics", x: centerX, y: centerY - yOffset },
+    { id: "feral-freedom", x: centerX + 2 * xOffset, y: centerY - yOffset },
+    { id: "sap", x: centerX - 2 * xOffset, y: centerY - yOffset },
+    { id: "youcode", x: centerX, y: centerY + yOffset },
+    { id: "pocket-pelvis", x: centerX + 2 * xOffset, y: centerY + yOffset },
+  ];
+
+  activityPositions.forEach(({ id, x, y }) => {
+    const activity = document.getElementById(id);
+    if (activity) {
+      activity.style.position = "absolute";
+      activity.style.left = `${x - activity.offsetWidth / 2}px`;
+      activity.style.top = `${y - activity.offsetHeight / 2}px`;
+    }
+  });
+}
+
+function arrangeCoreValues() {
+  const values = document.querySelectorAll(".core-value");
+  const map = document.getElementById("map-content");
+
+  const mapRect = map.getBoundingClientRect();
+  const centerX = mapRect.width / 2;
+  const centerY = mapRect.height / 2;
+
+  const isSmallScreen = window.innerWidth <= 768;
+  const xOffset = isSmallScreen ? mapRect.width / 5 : mapRect.width / 5;
+
+  const positions = [
+    { x: centerX - 2 * xOffset, y: centerY },
+    { x: centerX - xOffset, y: centerY },
+    { x: centerX, y: centerY },
+    { x: centerX + xOffset, y: centerY },
+    { x: centerX + 2 * xOffset, y: centerY },
+  ];
+
+  values.forEach((value, index) => {
+    if (positions[index]) {
+      value.style.position = "absolute";
+      value.style.left = `${positions[index].x - value.offsetWidth / 2}px`;
+      value.style.top = `${positions[index].y - value.offsetHeight / 2}px`;
+    }
+  });
 }
