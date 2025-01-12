@@ -271,6 +271,8 @@ function updateConnections() {
   const mapContent = document.getElementById("map-content");
   const mapRect = mapContent.getBoundingClientRect();
 
+  svg.setAttribute("width", mapRect.width / zoomLevel);
+  svg.setAttribute("height", mapRect.height / zoomLevel);
   svg.innerHTML = ""; // Clear existing lines
 
   activityConnections.forEach(({ from, to, text }) => {

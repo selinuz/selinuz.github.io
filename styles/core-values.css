@@ -74,7 +74,7 @@
   height: 100%;
   position: relative;
   transform-origin: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Zoom controls styling */
@@ -129,6 +129,7 @@
   width: 100%;
   height: 100%;
   pointer-events: auto;
+  overflow: visible;
 }
 
 line {
@@ -228,59 +229,73 @@ line {
 
 @media (max-width: 768px) {
   .core-value {
-    width: 120px;
-    padding: 0.8rem;
-    font-size: 0.9rem;
+    width: 100px;
+    padding: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .core-value-icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 
   .core-value h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   #map-container {
     width: 100%;
     margin: 0 auto;
     padding: 10px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   #map {
-    height: 600px;
+    height: 70vh;
+    margin: 0 auto;
   }
 
   .map-label {
+    font-size: 1rem;
+    padding: 10px;
+    width: auto;
+  }
+
+  #zoom-controls {
+    bottom: 10px;
+    top: auto;
+    flex-direction: column;
+    right: 10px;
+  }
+
+  #zoom-controls button {
+    width: 36px;
+    height: 36px;
     font-size: 1.2rem;
-    padding: 15px 10px;
-    width: 80%;
   }
 
   .activity-box {
-    width: 200px;
-    padding: 0.8rem;
+    width: 150px;
+    padding: 0.6rem;
+    margin: 0 auto;
   }
 
   .activity-box .title {
-    font-size: 1rem;
-  }
-
-  .activity-box .location {
     font-size: 0.9rem;
   }
 
-  .activity-box .duration {
-    font-size: 0.75rem;
+  .activity-box .location {
+    font-size: 0.8rem;
   }
 
-  .activity-box .description {
+  .activity-box .duration {
     font-size: 0.7rem;
   }
 
   .line-text-box {
-    width: 150px;
-    font-size: 0.8rem;
+    width: 120px;
+    font-size: 0.75rem;
+    padding: 8px;
   }
 }
