@@ -1,4 +1,4 @@
-.about-page {
+#about {
   display: flex;
   justify-content: top;
   align-items: left;
@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.about-page h1 {
+#about h1 {
   font-size: 2rem;
   margin-bottom: 30px;
   color: var(--white);
@@ -17,7 +17,7 @@
   margin-top: 100px;
 }
 
-.about-page p {
+#about p {
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 20px;
@@ -25,37 +25,37 @@
   text-align: justify;
 }
 
-.about-page a {
+#about a {
   color: var(--lavender);
   text-decoration: none;
   border-bottom: 2px solid var(--lavender);
   transition: color 0.3s, border-bottom 0.3s;
 }
 
-.about-page a:hover {
+#about a:hover {
   color: var(--off-white);
   border-bottom: 2px solid var(--off-white);
 }
 
 @media (max-width: 768px) {
-  .about-page {
+  #about {
     width: 90%;
     padding: 15px;
   }
 
-  .about-page h1 {
+  #about h1 {
     font-size: 1.8rem;
     margin-top: 20px;
     text-align: center;
   }
 
-  .about-page p {
+  #about p {
     font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 10px;
   }
 
-  .about-page a {
+  #about a {
     font-size: 1rem;
   }
 }
