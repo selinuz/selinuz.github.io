@@ -144,7 +144,6 @@ function startDrag(event) {
   const rect = draggedElement.getBoundingClientRect();
   offsetX = event.clientX - rect.left;
   offsetY = event.clientY - rect.top;
-  isDragging = false;
 
   document.addEventListener("mousemove", dragMove);
   document.addEventListener("mouseup", stopDrag);
@@ -191,6 +190,7 @@ function stopDrag() {
   document.removeEventListener("mousemove", dragMove);
   document.removeEventListener("mouseup", stopDrag);
   draggedElement = null;
+  isDraggingElement = false;
   updateConnections();
 }
 
