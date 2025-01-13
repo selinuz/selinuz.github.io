@@ -1,0 +1,28 @@
+#projects {
+  text-align: center;
+}
+
+#projects h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.project-box {
+  margin: 0 auto;
+  padding: 15px;
+  width: 300px;
+  border: 2px solid var(--lavender);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.project-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.project-box p {
+  font-size: 1rem;
+  color: var(--off-white);
+}
