@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./styles/projects.css" />
     <script src="./scripts/general.js" defer></script>
     <script src="./scripts/core-values.js" defer></script>
+    <script src="./scripts/projects.js" defer></script>
   </head>
 
   <body>
@@ -23,8 +24,9 @@
         <span></span>
       </div>
       <ul class="nav-links">
-        <li><a href="#home">Welcome</a></li>
+        <li><a href="#landing">Welcome</a></li>
         <li><a href="#about">Who I Am</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#values">My Values</a></li>
         <li><a href="#contact">Get in Touch</a></li>
       </ul>
@@ -36,9 +38,10 @@
         </a>
       </div>
       <div class="dropdown">
-        <a href="#home">Welcome</a>
+        <a href="#landing">Welcome</a>
         <a href="#about">Who I Am</a>
         <a href="#values">My Values</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Get in Touch</a>
       </div>
     </nav>
@@ -87,21 +90,256 @@
         impact.
       </p>
       <p>
-        Outside of academics, I enjoy sailing for its perfect mix of adventure
-        and calm. I’m an avid reader of philosophy, feminist literature, and
-        history, which help me think critically. Photography is another passion,
-        letting me capture meaningful moments and appreciate everyday details.
+        Outside of academics, I’m passionate about sailing and (try to) spend my
+        summers out on the ocean. I’m also an avid reader of philosophy,
+        feminist literature, and history, which sharpen my critical thinking
+        skills.
       </p>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="section">
-      <h1>My Projects</h1>
-      <div class="project-box">
-        <h3>Feral Freedom</h3>
-        <p>asldjfasjdfjaoasjdnf;ka</p>
+    <div id="projects" class="section">
+      <h1>Projects</h1>
+      <div id="controls">
+        <div id="sort-filter-controls">
+          <div class="dropdown" id="sort-dropdown">
+            <button class="dropbtn">Sort by Date ▼</button>
+            <div class="dropdown-content">
+              <button onclick="sortProjectsByDate('desc')">Most Recent</button>
+              <button onclick="sortProjectsByDate('asc')">Least Recent</button>
+            </div>
+          </div>
+
+          <div id="filter-buttons">
+            <button
+              class="skill-filter"
+              onclick="toggleSkillFilter(this, 'React.js')">
+              React.js
+            </button>
+            <button
+              class="skill-filter"
+              onclick="toggleSkillFilter(this, 'Unity')">
+              Unity
+            </button>
+            <button
+              class="skill-filter"
+              onclick="toggleSkillFilter(this, 'Game Development')">
+              Game Development
+            </button>
+            <button
+              class="skill-filter"
+              onclick="toggleSkillFilter(this, 'JavaScript')">
+              JavaScript
+            </button>
+            <button
+              class="skill-filter"
+              onclick="toggleSkillFilter(this, 'C++')">
+              C++
+            </button>
+            <button
+              class="skill-filter active"
+              id="select-all"
+              onclick="resetFilters()">
+              Select All
+            </button>
+          </div>
+        </div>
       </div>
-    </section>
+
+      <div id="projects-section">
+        <!-- Feral Freedom -->
+        <div
+          class="project-box left"
+          data-date="2024-09"
+          data-skills="C++, OpenGL, Game Development">
+          <h3>Feral Freedom</h3>
+          <p class="detail">for CPSC427: Video Game Development</p>
+          <p class="duration">
+            <strong>Duration:</strong> September 2024 – December 2024
+          </p>
+          <p>
+            Collaborated with a team of six to develop a 2D pixel-art survival
+            game featuring AI-driven patrols, Undertale-style encounters, and
+            resource collection mechanics.
+          </p>
+          <p><strong>Personal Contributions:</strong></p>
+          <ul>
+            <li>
+              Designed and implemented core frontend features using C++ and
+              OpenGL.
+            </li>
+            <li>
+              Developed systems like lives, HP bar, inventory, stats displays,
+              and interactive screens.
+            </li>
+            <li>
+              Originated the project idea, defined the vision, and led weekly
+              scrum meetings.
+            </li>
+          </ul>
+          <div class="skills">
+            <strong>Skills:</strong>
+            <span>C++</span>
+            <span>OpenGL</span>
+            <span>Game Development</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/SELINUZ/FERALFREEDOM" target="_blank"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+
+        <!-- PLUMAGE -->
+        <div
+          class="project-box right"
+          data-date="2024-04"
+          data-skills="React.js, JavaScript, npm">
+          <h3>PLUMAGE</h3>
+          <p class="detail">for youCode x Arc'teryx 2024</p>
+          <p class="duration"><strong>Duration:</strong> April 6–7, 2024</p>
+          <p>
+            With the data provided by Arc’teryx — the platinum sponsor of
+            YouCode2024 — we created a website in 24 hours where users can
+            access personal sizing technology, AI-powered color analysis, and 3D
+            garment visualization for virtual try-ons.
+          </p>
+          <p><strong>Personal Contributions:</strong></p>
+          <ul>
+            <li>
+              Implemented sign-up, login, and landing pages frontend using React
+              and JavaScript.
+            </li>
+            <li>
+              Created the authentication service with Axios to ensure secure
+              user registration and login via internal API.
+            </li>
+          </ul>
+          <div class="skills">
+            <strong>Skills:</strong>
+            <span>React.js</span>
+            <span>JavaScript</span>
+            <span>npm</span>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank">GitHub Repository</a>
+          </div>
+        </div>
+
+        <!-- Pocket Pelvis -->
+        <div
+          class="project-box left"
+          data-date="2024-01"
+          data-skills="Unity, C#, Vuforia AR SDK">
+          <h3>POCKET PELVIS: AR Birth Animation</h3>
+          <p class="detail">for MDIA470: Developing Emerging Technologies</p>
+          <p class="duration">
+            <strong>Duration:</strong> January 2024 – April 2024
+          </p>
+          <p>
+            Pocket Pelvis is an AR app that enhances the 3D visualization of the
+            complex anatomy of the human pelvis. Our team worked to integrate a
+            birth animation into the existing application, along with
+            implementing image recognition in AR mode with a physical 3D printed
+            pelvis model.
+          </p>
+          <p><strong>Personal Contributions:</strong></p>
+          <ul>
+            <li>
+              Identified a UX issue with the baby model becoming lost in AR
+              mode; implemented a recenter feature in Unity with C#.
+            </li>
+            <li>
+              Integrated Lean Touch for intuitive touch-based interaction,
+              allowing users to explore the birth process with rotation and
+              scaling.
+            </li>
+          </ul>
+          <div class="skills">
+            <strong>Skills:</strong>
+            <span>Unity</span>
+            <span>C#</span>
+            <span>Vuforia AR SDK</span>
+          </div>
+          <div class="project-links">
+            <a
+              href="https://eml.ubc.ca/projects/ar-application-for-midwifery-education/"
+              target="_blank"
+              >Learn More</a
+            >
+          </div>
+        </div>
+
+        <!-- youCode Hackathon Website Design -->
+        <div
+          class="project-box right"
+          data-date="2023-12"
+          data-skills="Figma, Graphic Design">
+          <h3>youCode Hackathon Website Design</h3>
+          <p class="duration">
+            <strong>Duration:</strong> December 2023 – January 2024
+          </p>
+          <p>
+            Designed a user-friendly website UI with creative unicorn mascots to
+            align with the hackathon's "wellness" theme.
+          </p>
+          <p><strong>Personal Contributions:</strong></p>
+          <ul>
+            <li>Designed main UI components in Figma.</li>
+            <li>
+              Drew custom mascots that integrate the theme while maintaining
+              accessibility and user-friendliness.
+            </li>
+          </ul>
+          <div class="skills">
+            <strong>Skills:</strong>
+            <span>Figma</span>
+            <span>Graphic Design</span>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank">Hackathon Website</a>
+          </div>
+        </div>
+
+        <!-- ProjectBuddies -->
+        <div
+          class="project-box left"
+          data-date="2023-07"
+          data-skills="HTML5, CSS, JavaScript, PHP, MySQL, CodeIgniter">
+          <h3>ProjectBuddies</h3>
+          <p class="duration">
+            <strong>Duration:</strong> July 2023 – August 2023
+          </p>
+          <p>
+            Developed a web-based collaboration platform for IT projects with
+            HTML5, CSS, and JavaScript for frontend, PHP with CodeIgniter for
+            backend, and SQL/MySQL for database management.
+          </p>
+          <p><strong>Personal Contributions:</strong></p>
+          <ul>
+            <li>
+              Developed frontend components using HTML5, CSS, and JavaScript.
+            </li>
+            <li>
+              Implemented backend logic with PHP and CodeIgniter framework.
+            </li>
+            <li>
+              Designed and managed a MySQL database for secure and efficient
+              data storage.
+            </li>
+          </ul>
+          <div class="skills">
+            <strong>Skills:</strong>
+            <span>HTML5</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>PHP</span>
+            <span>CodeIgniter</span>
+            <span>MySQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Core Values -->
     <section id="values" class="section">

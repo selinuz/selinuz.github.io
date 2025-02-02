@@ -1,28 +1,173 @@
 #projects {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  padding: 5% 5%;
 }
 
-#projects h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+#controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 50px;
+}
+
+#sort-filter-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#sort-dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.dropbtn {
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: var(--very-dark-purple);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background-color: var(--very-dark-purple);
+  min-width: 140px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: var(--white);
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content button:hover {
+  background-color: var(--steel-blue);
+  border: 1px solid var(--off-white);
+}
+
+#projects-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .project-box {
-  margin: 0 auto;
-  padding: 15px;
-  width: 300px;
-  border: 2px solid var(--lavender);
+  width: 25%;
+  padding: 40px;
+  background: linear-gradient(
+    130deg,
+    var(--very-dark-purple),
+    var(--deep-indigo)
+  );
+  color: var(--off-white);
+  border: 0px solid var(--off-white);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .project-box h3 {
   font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--off-white);
   margin-bottom: 10px;
+}
+
+.project-box .detail {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--off-white);
+  margin-bottom: 8px;
+}
+
+.project-box .duration {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--lavender);
+  margin-bottom: 12px;
 }
 
 .project-box p {
   font-size: 1rem;
+  line-height: 1.6;
   color: var(--off-white);
+  margin-bottom: 10px;
+}
+
+#filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.skill-filter {
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: var(--steel-blue);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skill-filter:hover {
+  background-color: var(--very-dark-purple);
+}
+
+.skill-filter.active {
+  background-color: var(--very-dark-purple);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  #controls {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  #sort-filter-controls {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .project-box {
+    width: 100%;
+    max-width: 100%;
+  }
 }
