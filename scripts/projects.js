@@ -9,18 +9,9 @@ function sortProjectsByDate(order) {
   projects.forEach((project) => container.appendChild(project));
 }
 
-function updateTimeline() {
-  const start = document.getElementById("start-year").value;
-  const end = document.getElementById("end-year").value;
-  document.getElementById("timeline-range").textContent = `${start} - ${end}`;
-  filterByTimeline(start, end);
-}
-
-function filterByTimeline(start, end) {
-  document.querySelectorAll(".project-box").forEach((box) => {
-    const year = parseInt(box.getAttribute("data-date"));
-    box.style.display = year >= start && year <= end ? "block" : "none";
-  });
+function toggleProjectDetails(element) {
+  const details = element.querySelector(".project-details");
+  details.style.display = details.style.display === "none" ? "block" : "none";
 }
 
 const selectedSkills = new Set();

@@ -33,9 +33,14 @@ body {
   text-align: center;
 }
 
-.body-text h1 {
+.section h1 {
   font-size: 2rem;
-  color: var(--white);
+  font-weight: bold;
+  text-align: center;
+  color: var(--off-white);
+  margin-top: 10%;
+  margin-bottom: 5%;
+  letter-spacing: 2px;
 }
 
 /* Navigation Bar Styles */
