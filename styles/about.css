@@ -3,18 +3,10 @@
   justify-content: top;
   align-items: left;
   text-align: left;
-  height: 100vh;
+  height: 70%;
   width: 60%;
   margin: 0 auto;
   flex-direction: column;
-}
-
-#about h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: var(--white);
-  text-align: center;
-  margin-top: 100px;
 }
 
 #about p {

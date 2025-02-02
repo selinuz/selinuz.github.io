@@ -50,17 +50,17 @@
 }
 
 @media (max-width: 768px) {
-  .landing-page {
+  #landing {
     width: 90%;
     height: 100vh;
     margin: 0px auto;
   }
 
-  .landing-page h3 {
+  #landing h3 {
     font-size: 1.2rem;
   }
 
-  .landing-page p {
+  #landing p {
     font-size: 1.2rem;
     line-height: 1.5;
     text-align: left;

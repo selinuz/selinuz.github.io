@@ -1,0 +1,228 @@
+#projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10%;
+}
+
+#controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--off-white);
+}
+
+#sort-filter-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#sort-dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.dropbtn {
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: var(--very-dark-purple);
+  border: 1px solid var(--off-white);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background-color: var(--very-dark-purple);
+  min-width: 140px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: var(--white);
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content button:hover {
+  background-color: var(--steel-blue);
+  border: 1px solid var(--off-white);
+}
+
+#projects-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+}
+
+.project-box {
+  width: 20%;
+  padding: 50px;
+  background: linear-gradient(
+    135deg,
+    var(--very-dark-purple),
+    var(--deep-indigo)
+  );
+  color: var(--off-white);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-box h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--off-white);
+  margin-bottom: 10px;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-icon img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.project-icon img:hover {
+  transform: scale(1.2);
+}
+
+.project-box .detail {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--off-white);
+  margin-bottom: 8px;
+}
+
+.project-box .duration {
+  font-size: 1rem;
+  color: var(--lavender);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.project-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--off-white);
+  margin-bottom: 10px;
+}
+
+.project-box li {
+  font-size: 1rem;
+  color: var(--off-white);
+  margin-bottom: 10px;
+  margin-left: -10px;
+}
+
+.skills {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-box {
+  display: inline-block;
+  background: var(--steel-blue);
+  color: var(--very-dark-purple);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  padding: 8px 15px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.click-to-expand {
+  font-size: 0.9rem;
+  font-style: italic;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.click-to-expand:hover {
+  color: var(--lavender);
+}
+
+#filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.skill-filter {
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: var(--steel-blue);
+  border: 0.5px solid var(--off-white);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skill-filter:hover {
+  background-color: var(--very-dark-purple);
+}
+
+.skill-filter.active {
+  background-color: var(--very-dark-purple);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  #controls {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  #sort-filter-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-box {
+    width: 70%;
+    max-width: 70%;
+  }
+}
