@@ -136,28 +136,36 @@ function adjustZoom(delta) {
 }
 
 function startDrag(event) {
+  event.preventDefault();
+
+  let touch = event.touches ? event.touches[0] : event;
+
   draggedElement =
     event.target.closest(".core-value") ||
     event.target.closest(".activity-box");
   if (!draggedElement) return;
 
   const rect = draggedElement.getBoundingClientRect();
-  offsetX = event.clientX - rect.left;
-  offsetY = event.clientY - rect.top;
+  offsetX = touch.clientX - rect.left;
+  offsetY = touch.clientY - rect.top;
 
   document.addEventListener("mousemove", dragMove);
   document.addEventListener("mouseup", stopDrag);
+
+  document.addEventListener("touchmove", dragMove, { passive: false });
+  document.addEventListener("touchend", stopDrag);
   event.preventDefault();
 }
 
 function dragMove(event) {
   if (!draggedElement) return;
 
+  let touch = event.touches ? event.touches[0] : event;
   const mapContent = document.getElementById("map-content");
   const mapContentRect = mapContent.getBoundingClientRect();
 
-  const adjustedX = (event.clientX - mapContentRect.left - offsetX) / zoomLevel;
-  const adjustedY = (event.clientY - mapContentRect.top - offsetY) / zoomLevel;
+  const adjustedX = (touch.clientX - mapContentRect.left - offsetX) / zoomLevel;
+  const adjustedY = (touch.clientY - mapContentRect.top - offsetY) / zoomLevel;
 
   const parent = document.getElementById("map");
   const parentRect = parent.getBoundingClientRect();

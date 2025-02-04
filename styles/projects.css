@@ -218,12 +218,21 @@
     flex-direction: column;
   }
 
+  #projects-section {
+    gap: 20px;
+  }
+
+  #sort-dropdown {
+    width: 150px;
+  }
+
   #sort-filter-controls {
     flex-direction: flex;
+    margin-top: 20px;
   }
 
   #filter-buttons {
-    gap: 15px;
+    gap: 10px;
   }
 
   .skill-filter {
@@ -231,8 +240,26 @@
     font-size: 0.9rem;
   }
 
+  .skill-box {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+
   .project-box {
+    padding: 30px;
     width: 70%;
     max-width: 70%;
+  }
+
+  .project-box h3 {
+    font-size: 1.2rem;
+  }
+
+  .project-box .detail {
+    font-size: 0.9rem;
+  }
+
+  .project-box .duration {
+    font-size: 0.9rem;
   }
 }
