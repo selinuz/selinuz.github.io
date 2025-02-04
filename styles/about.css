@@ -35,19 +35,10 @@
     padding: 15px;
   }
 
-  #about h1 {
-    font-size: 1.8rem;
-    margin-top: 20px;
-    text-align: center;
-  }
-
-  #about p {
-    font-size: 1rem;
-    line-height: 1.5;
+  #about p,
+  a {
+    font-size: 1.1rem;
+    line-height: 1.6;
     margin-bottom: 10px;
-  }
-
-  #about a {
-    font-size: 1rem;
   }
 }

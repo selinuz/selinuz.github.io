@@ -27,6 +27,7 @@
 #sort-dropdown {
   position: relative;
   display: inline-flex;
+  width: 200px;
 }
 
 .dropbtn {
@@ -34,7 +35,7 @@
   font-size: 1rem;
   font-weight: bold;
   background-color: var(--very-dark-purple);
-  border: 1px solid var(--off-white);
+  border: 0.5px solid var(--off-white);
   color: white;
   border-radius: 5px;
   cursor: pointer;
@@ -67,7 +68,7 @@
 
 .dropdown-content button:hover {
   background-color: var(--steel-blue);
-  border: 1px solid var(--off-white);
+  border: 0.5px solid var(--off-white);
 }
 
 #projects-section {
@@ -124,6 +125,7 @@
 .project-box .detail {
   font-size: 1rem;
   font-style: italic;
+  font-weight: bold;
   color: var(--off-white);
   margin-bottom: 8px;
 }
@@ -159,9 +161,9 @@
 .skill-box {
   display: inline-block;
   background: var(--steel-blue);
-  color: var(--very-dark-purple);
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+  color: var(--off-white);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  border: 0.5px solid var(--off-white);
   padding: 8px 15px;
   font-size: 0.85rem;
   font-weight: bold;
@@ -217,8 +219,16 @@
   }
 
   #sort-filter-controls {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: flex;
+  }
+
+  #filter-buttons {
+    gap: 15px;
+  }
+
+  .skill-filter {
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
 
   .project-box {
