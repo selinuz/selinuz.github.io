@@ -120,6 +120,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const map = document.getElementById("map");
   map.addEventListener("mousedown", startMapDrag);
+  map.addEventListener("touchstart", startMapDrag, { passive: false });
+
+  document.querySelectorAll(".core-value, .activity-box").forEach((element) => {
+    element.addEventListener("mousedown", startDrag);
+    element.addEventListener("touchstart", startDrag, { passive: false });
+
+    element.addEventListener("click", () => toggleDefinition(element));
+    element.addEventListener("touchend", (event) => {
+      event.preventDefault();
+      toggleDefinition(element);
+    });
+  });
 
   window.addEventListener("resize", () => {
     arrangeCoreValues();
@@ -197,12 +209,15 @@ function stopDrag() {
   if (!draggedElement) return;
   document.removeEventListener("mousemove", dragMove);
   document.removeEventListener("mouseup", stopDrag);
+  document.removeEventListener("touchmove", dragMove);
+  document.removeEventListener("touchend", stopDrag);
   draggedElement = null;
   isDraggingElement = false;
   updateConnections();
 }
 
 function startMapDrag(event) {
+  let touch = event.touches ? event.touches[0] : event;
   if (
     event.target.closest(".core-value") ||
     event.target.closest(".activity-box")
@@ -211,11 +226,13 @@ function startMapDrag(event) {
   }
 
   isMapDragging = true;
-  mapDragStartX = event.clientX - mapOffsetX;
-  mapDragStartY = event.clientY - mapOffsetY;
+  mapDragStartX = touch.clientX - mapOffsetX;
+  mapDragStartY = touch.clientY - mapOffsetY;
 
   document.addEventListener("mousemove", dragMap);
   document.addEventListener("mouseup", stopMapDrag);
+  document.addEventListener("touchmove", dragMap, { passive: false });
+  document.addEventListener("touchend", stopMapDrag);
 
   const mapContent = document.getElementById("map-content");
   mapContent.style.cursor = "grabbing";
@@ -226,9 +243,10 @@ function startMapDrag(event) {
 function dragMap(event) {
   if (!isMapDragging) return;
 
+  let touch = event.touches ? event.touches[0] : event;
   const mapContent = document.getElementById("map-content");
-  mapOffsetX = event.clientX - mapDragStartX;
-  mapOffsetY = event.clientY - mapDragStartY;
+  mapOffsetX = touch.clientX - mapDragStartX;
+  mapOffsetY = touch.clientY - mapDragStartY;
 
   mapContent.style.transform = `translate(${mapOffsetX}px, ${mapOffsetY}px) scale(${zoomLevel})`;
   updateConnections();
@@ -244,6 +262,9 @@ function stopMapDrag() {
 
   document.removeEventListener("mousemove", dragMap);
   document.removeEventListener("mouseup", stopMapDrag);
+
+  document.removeEventListener("touchmove", dragMap);
+  document.removeEventListener("touchend", stopMapDrag);
 }
 
 function toggleDefinition(element) {
@@ -302,6 +323,9 @@ function updateConnections() {
       transparentLine.addEventListener("click", (event) => {
         toggleLineText(event, x1, y1, x2, y2, text);
       });
+      transparentLine.addEventListener("touchend", (event) => {
+        toggleLineText(event, x1, y1, x2, y2, text);
+      });
 
       svg.appendChild(transparentLine);
     }
@@ -330,6 +354,10 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
     textBox.style.top = `${midY}px`;
 
     textBox.addEventListener("click", () => {
+      textBox.remove();
+      visibleTextBoxes.delete(lineElement);
+    });
+    textBox.addEventListener("touchend", () => {
       textBox.remove();
       visibleTextBoxes.delete(lineElement);
     });
