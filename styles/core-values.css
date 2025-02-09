@@ -146,9 +146,9 @@ line {
 
 .transparent-line {
   stroke: transparent;
-  stroke-width: 10;
-  pointer-events: stroke;
+  stroke-width: 15px;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .transparent-line:hover,
@@ -175,6 +175,7 @@ line {
   background-color: var(--lavender);
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .activity-box .title,
@@ -261,7 +262,7 @@ line {
   }
 
   #map {
-    height: 70vh;
+    height: 60vh;
     margin: 0 auto;
   }
 

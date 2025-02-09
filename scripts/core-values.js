@@ -114,13 +114,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const zoomInButton = document.getElementById("zoom-in");
   const zoomOutButton = document.getElementById("zoom-out");
-
   zoomInButton.addEventListener("click", () => adjustZoom(0.1));
   zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
+  zoomInButton.addEventListener("touchend", (event) => {
+    event.preventDefault();
+    adjustZoom(0.1);
+  });
+
+  zoomOutButton.addEventListener("touchend", (event) => {
+    event.preventDefault();
+    adjustZoom(-0.1);
+  });
 
   const map = document.getElementById("map");
   map.addEventListener("mousedown", startMapDrag);
-  map.addEventListener("touchstart", startMapDrag, { passive: false });
 
   document.querySelectorAll(".core-value, .activity-box").forEach((element) => {
     element.addEventListener("mousedown", startDrag);
@@ -136,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     arrangeCoreValues();
     arrangeActivityBoxes();
+    adjustZoom(0);
     updateConnections();
   });
 });
@@ -143,6 +151,20 @@ document.addEventListener("DOMContentLoaded", () => {
 function adjustZoom(delta) {
   zoomLevel = Math.min(2.0, Math.max(0.5, zoomLevel + delta));
   const mapContent = document.getElementById("map-content");
+  mapContent.style.transform = `scale(${zoomLevel})`;
+  updateConnections();
+}
+
+function adjustZoom(delta) {
+  const mapContent = document.getElementById("map-content");
+  const mapContainer = document.getElementById("map-container");
+
+  const newZoomLevel = Math.min(2.0, Math.max(0.5, zoomLevel + delta));
+  if (newZoomLevel === zoomLevel) return;
+
+  zoomLevel = newZoomLevel;
+  mapContent.style.width = `${mapContainer.offsetWidth}px`;
+  mapContent.style.height = `${mapContainer.offsetHeight}px`;
   mapContent.style.transform = `scale(${zoomLevel})`;
   updateConnections();
 }
@@ -166,7 +188,6 @@ function startDrag(event) {
 
   document.addEventListener("touchmove", dragMove, { passive: false });
   document.addEventListener("touchend", stopDrag);
-  event.preventDefault();
 }
 
 function dragMove(event) {
@@ -174,35 +195,21 @@ function dragMove(event) {
 
   let touch = event.touches ? event.touches[0] : event;
   const mapContent = document.getElementById("map-content");
-  const mapContentRect = mapContent.getBoundingClientRect();
+  const mapRect = mapContent.getBoundingClientRect();
 
-  const adjustedX = (touch.clientX - mapContentRect.left - offsetX) / zoomLevel;
-  const adjustedY = (touch.clientY - mapContentRect.top - offsetY) / zoomLevel;
+  const adjustedX = (touch.clientX - mapRect.left) / zoomLevel - offsetX;
+  const adjustedY = (touch.clientY - mapRect.top) / zoomLevel - offsetY;
 
-  const parent = document.getElementById("map");
-  const parentRect = parent.getBoundingClientRect();
-  const elementWidth = draggedElement.offsetWidth / zoomLevel;
-  const elementHeight = draggedElement.offsetHeight / zoomLevel;
+  const containerWidth = mapRect.width / zoomLevel;
+  const containerHeight = mapRect.height / zoomLevel;
 
-  let x = Math.max(
-    0,
-    Math.min(adjustedX, (parentRect.width - elementWidth) / zoomLevel)
-  );
-  let y = Math.max(
-    0,
-    Math.min(adjustedY, (parentRect.height - elementHeight) / zoomLevel)
-  );
+  let x = Math.min(adjustedX, containerWidth);
+  let y = Math.min(adjustedY, containerHeight);
 
   draggedElement.style.left = `${x}px`;
   draggedElement.style.top = `${y}px`;
 
-  isDraggingElement = true;
   updateConnections();
-
-  visibleTextBoxes.forEach((textBox, lineElement) => {
-    textBox.remove();
-    visibleTextBoxes.delete(lineElement);
-  });
 }
 
 function stopDrag() {
@@ -323,7 +330,7 @@ function updateConnections() {
       transparentLine.addEventListener("click", (event) => {
         toggleLineText(event, x1, y1, x2, y2, text);
       });
-      transparentLine.addEventListener("touchend", (event) => {
+      transparentLine.addEventListener("touchstart", (event) => {
         toggleLineText(event, x1, y1, x2, y2, text);
       });
 
@@ -357,18 +364,18 @@ function toggleLineText(event, x1, y1, x2, y2, text) {
       textBox.remove();
       visibleTextBoxes.delete(lineElement);
     });
+
     textBox.addEventListener("touchend", () => {
       textBox.remove();
       visibleTextBoxes.delete(lineElement);
     });
 
-    document.getElementById("map-content").appendChild(textBox);
+    mapContent.appendChild(textBox);
     visibleTextBoxes.set(lineElement, textBox);
   }
 }
 
 function showActivityDetails(activityBox) {
-  toggleDefinition(activityBox);
   const activityId = activityBox.id;
   const connectionsMap = {
     "ubc-cs": ["leadership", "excellence"],
