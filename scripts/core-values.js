@@ -114,13 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const zoomInButton = document.getElementById("zoom-in");
   const zoomOutButton = document.getElementById("zoom-out");
+
   zoomInButton.addEventListener("click", () => adjustZoom(0.1));
   zoomOutButton.addEventListener("click", () => adjustZoom(-0.1));
   zoomInButton.addEventListener("touchend", (event) => {
     event.preventDefault();
     adjustZoom(0.1);
   });
-
   zoomOutButton.addEventListener("touchend", (event) => {
     event.preventDefault();
     adjustZoom(-0.1);
@@ -129,17 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const map = document.getElementById("map");
   map.addEventListener("mousedown", startMapDrag);
 
-  document.querySelectorAll(".core-value, .activity-box").forEach((element) => {
-    element.addEventListener("mousedown", startDrag);
-    element.addEventListener("touchstart", startDrag, { passive: false });
-
-    element.addEventListener("click", () => toggleDefinition(element));
-    element.addEventListener("touchend", (event) => {
-      event.preventDefault();
-      toggleDefinition(element);
-    });
-  });
-
   window.addEventListener("resize", () => {
     arrangeCoreValues();
     arrangeActivityBoxes();
@@ -147,13 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateConnections();
   });
 });
-
-function adjustZoom(delta) {
-  zoomLevel = Math.min(2.0, Math.max(0.5, zoomLevel + delta));
-  const mapContent = document.getElementById("map-content");
-  mapContent.style.transform = `scale(${zoomLevel})`;
-  updateConnections();
-}
 
 function adjustZoom(delta) {
   const mapContent = document.getElementById("map-content");
@@ -393,9 +375,11 @@ function showActivityDetails(activityBox) {
     .querySelectorAll(".activity-box, .core-value, .transparent-line")
     .forEach((elem) => {
       elem.classList.remove("highlight");
+      elem.classList.remove("expanded");
     });
 
   if (!isHighlighted && !isDraggingElement) {
+    toggleDefinition(activityBox);
     activityBox.classList.add("highlight");
 
     connectedValues.forEach((coreValueId) => {
@@ -406,7 +390,7 @@ function showActivityDetails(activityBox) {
     });
 
     const svg = document.getElementById("connections");
-    svg.querySelectorAll("line").forEach((line) => {
+    svg.querySelectorAll(".transparent-line").forEach((line) => {
       const from = line.getAttribute("data-from");
       const to = line.getAttribute("data-to");
 
