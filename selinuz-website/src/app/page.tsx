@@ -1,12 +1,13 @@
 import Navbar from "./components/Navbar";
+import Landing from "./components/Landing";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen p-8 sm:p-20">
-        <h1 className="text-3xl font-bold">Selin Uz</h1>
-        {/* Add Landing, About, etc. components here later */}
+      <main>
+        <Landing />
+        {/* Add About, Projects, etc. here later */}
       </main>
     </>
   );
