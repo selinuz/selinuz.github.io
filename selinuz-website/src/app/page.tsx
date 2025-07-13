@@ -1,5 +1,7 @@
-import Navbar from "./components/Navbar";
-import Landing from "./components/Landing";
+import Navbar from "../components/Navbar";
+import Landing from "../components/Landing";
+import About from "../components/About";
+import Projects from "../components/Projects";
 
 export default function Home() {
   return (
@@ -7,7 +9,9 @@ export default function Home() {
       <Navbar />
       <main>
         <Landing />
-        {/* Add About, Projects, etc. here later */}
+        <About />
+        <Projects />
+        {/* Add Projects or Values next */}
       </main>
     </>
   );
