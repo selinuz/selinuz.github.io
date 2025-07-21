@@ -10,7 +10,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
   width: 80%;
   margin-bottom: 50px;
   padding-bottom: 20px;
@@ -19,9 +18,12 @@
 
 #sort-filter-controls {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
+  gap: 20px;
 }
 
 #sort-dropdown {
@@ -31,7 +33,7 @@
 }
 
 .dropbtn {
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 1rem;
   font-weight: bold;
   background-color: var(--very-dark-purple);
@@ -76,45 +78,47 @@
   flex-wrap: wrap;
   gap: 50px;
   justify-content: center;
+  width: 100%;
 }
 
 .project-box {
-  width: 20%;
-  padding: 50px;
+  width: 22%;
+  padding: 40px 30px;
   background: linear-gradient(
     135deg,
     var(--very-dark-purple),
     var(--deep-indigo)
   );
   color: var(--off-white);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .project-box:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.project-box h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--off-white);
-  margin-bottom: 10px;
+  transform: translateY(-8px);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.3);
 }
 
 .project-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+}
+
+.project-box h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--off-white);
 }
 
 .project-icon img {
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   transition: transform 0.3s ease;
 }
 
@@ -122,33 +126,59 @@
   transform: scale(1.2);
 }
 
-.project-box .detail {
-  font-size: 1rem;
-  font-style: italic;
-  font-weight: bold;
-  color: var(--off-white);
-  margin-bottom: 8px;
-}
-
 .project-box .duration {
-  font-size: 1rem;
-  color: var(--lavender);
+  font-size: 0.95rem;
   font-style: italic;
-  margin-bottom: 12px;
+  color: var(--lavender);
+  margin-bottom: 10px;
 }
 
 .project-box p {
   font-size: 1rem;
   line-height: 1.6;
+  margin-bottom: 10px;
   color: var(--off-white);
+}
+
+.project-box .detail {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: bold;
+  color: var(--off-white);
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
+.project-box .project-context {
+  font-size: 0.95rem;
+  color: var(--lavender);
+  margin-top: 5px;
+  font-style: italic;
+}
+
 .project-box li {
-  font-size: 1rem;
+  list-style-type: disc;
+  font-size: 0.95rem;
+  margin-left: 1rem;
+  margin-bottom: 8px;
   color: var(--off-white);
-  margin-bottom: 10px;
-  margin-left: -10px;
+}
+
+.project-details {
+  margin-top: 15px;
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .skills {
@@ -159,33 +189,27 @@
 }
 
 .skill-box {
-  display: inline-block;
   background: var(--steel-blue);
-  color: var(--off-white);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  color: white;
   border: 0.5px solid var(--off-white);
-  padding: 8px 15px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  padding: 6px 14px;
   font-size: 0.85rem;
   font-weight: bold;
   border-radius: 20px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .click-to-expand {
   font-size: 0.9rem;
   font-style: italic;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.click-to-expand:hover {
+  margin-top: 10px;
   color: var(--lavender);
 }
 
 #filter-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
 }
 
@@ -208,18 +232,20 @@
 .skill-filter.active {
   background-color: var(--very-dark-purple);
   color: white;
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* Mobile responsiveness */
 @media (max-width: 768px) {
   #controls {
     width: 90%;
     flex-direction: column;
+    gap: 20px;
   }
 
   #projects-section {
-    gap: 20px;
+    gap: 30px;
   }
 
   #sort-dropdown {
@@ -227,39 +253,37 @@
   }
 
   #sort-filter-controls {
-    flex-direction: flex;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 15px;
   }
 
   #filter-buttons {
     gap: 10px;
   }
 
-  .skill-filter {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-
-  .skill-box {
-    padding: 5px 10px;
-    font-size: 0.9rem;
-  }
-
   .project-box {
-    padding: 30px;
-    width: 70%;
-    max-width: 70%;
+    width: 90%;
+    max-width: 90%;
+    padding: 25px;
   }
 
   .project-box h3 {
     font-size: 1.2rem;
   }
 
-  .project-box .detail {
+  .project-box .duration,
+  .project-box .detail,
+  .project-box li {
     font-size: 0.9rem;
   }
 
-  .project-box .duration {
+  .skill-box {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .skill-filter {
     font-size: 0.9rem;
+    padding: 8px 12px;
   }
 }
