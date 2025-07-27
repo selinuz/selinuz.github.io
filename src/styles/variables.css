@@ -40,5 +40,11 @@ body {
   color: var(--off-white);
   margin-top: 10%;
   margin-bottom: 5%;
-  letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  .section h1 {
+    font-size: 1.6rem;
+    margin-bottom: 10%;
+  }
 }

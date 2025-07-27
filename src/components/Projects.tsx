@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
 
-  const allSkills = Array.from(new Set(allProjects.flatMap((p) => p.skills)));
+  const allSkills = ["C++", "C#", "JavaScript", "React.js", "CSS", "Unity"];
 
   const toggleSkill = (skill: string) => {
     setSelectedSkills((prev) =>
@@ -26,17 +26,17 @@ const Projects: React.FC = () => {
     setSelectedSkills([]);
   };
 
-  const sortByDate = (a: string, b: string): number => {
-    const extractYear = (str: string) => {
-      const match = str.match(/\b(\d{4})/);
-      return match ? parseInt(match[1]) : 0;
-    };
-    const yearA = extractYear(a);
-    const yearB = extractYear(b);
-    return sortOrder === "asc" ? yearA - yearB : yearB - yearA;
-  };
-
   const filteredProjects = useMemo(() => {
+    const sortByDate = (a: string, b: string) => {
+      const extractYear = (str: string) => {
+        const match = str.match(/\b(\d{4})/);
+        return match ? parseInt(match[1]) : 0;
+      };
+      const yearA = extractYear(a);
+      const yearB = extractYear(b);
+      return sortOrder === "asc" ? yearA - yearB : yearB - yearA;
+    };
+
     const filtered =
       selectedSkills.length === 0
         ? allProjects

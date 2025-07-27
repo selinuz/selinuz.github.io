@@ -29,12 +29,14 @@ const ProjectCard: React.FC<Props> = ({
               alt={
                 project.iconType === "github" ? "GitHub Link" : "External Link"
               }
-              width={20}
-              height={20}
+              width={24}
+              height={24}
             />
           </a>
         )}
       </div>
+
+      <p className="subtitle">{project.subtitle}</p>
 
       <p className="duration">{project.duration}</p>
       <p>{project.description}</p>

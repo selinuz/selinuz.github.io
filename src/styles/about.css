@@ -1,16 +1,14 @@
 #about {
   display: flex;
-  justify-content: top;
   align-items: left;
   text-align: left;
-  height: 70%;
   width: 60%;
   margin: 0 auto;
   flex-direction: column;
 }
 
 #about p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.8;
   margin-bottom: 20px;
   color: var(--off-white);
@@ -31,8 +29,7 @@
 
 @media (max-width: 768px) {
   #about {
-    width: 90%;
-    padding: 15px;
+    width: 85%;
   }
 
   #about p,

@@ -8,11 +8,9 @@ const About: React.FC = () => {
       <h1>About Me</h1>
       <p>
         I’m a senior Computer Science student at UBC with a passion for solving
-        problems through technology and creative thinking. I love building
+        problems through creative and critical thinking. I love building
         meaningful projects, improving processes, and making things more
-        efficient—whether it’s streamlining communication or optimizing
-        workflows. I’m always excited to collaborate with others and give back
-        to the communities that have shaped me.
+        efficient.
       </p>
       <p>
         I’m honored to have received the{" "}
@@ -24,15 +22,12 @@ const About: React.FC = () => {
         </a>
         , a full-ride scholarship that recognized my academic achievements and
         leadership potential during high school. This opportunity allowed me to
-        move from my home country, Türkiye, to Canada to pursue my education and
-        has further motivated me to push boundaries and strive for meaningful
-        impact.
+        move from my home country, Türkiye, to Canada to pursue my education.
       </p>
       <p>
         Outside of academics, I’m passionate about sailing and (try to) spend my
-        summers out on the ocean. I’m also an avid reader of philosophy,
-        feminist literature, and history, which sharpen my critical thinking
-        skills.
+        summers out on the ocean. I enjoy reading philosophy, feminist
+        literature, and history, which sharpen my critical thinking skills.
       </p>
     </section>
   );

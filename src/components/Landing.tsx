@@ -8,9 +8,10 @@ const Landing: React.FC = () => {
     <section id="landing" className="section">
       <h3>Hello, world!</h3>
       <p>
-        <strong>I’m Selin, and this site is a window into my world—</strong>
-        offering a glimpse beyond what a resume or LinkedIn profile can show,
-        highlighting my passions, core values, and the work I’ve created.
+        <strong>I’m Selin, and this site is a window into my world. </strong>
+        This site goes beyond a typical resume or LinkedIn page. It’s a space
+        where I share what drives me: my passions, values, and the work I
+        created.
       </p>
 
       <div className="contact-container">

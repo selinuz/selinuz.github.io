@@ -1,6 +1,7 @@
 export interface Project {
   id: string;
   title: string;
+  subtitle?: string;
   duration: string;
   description: string;
   detailsTitle?: string;
@@ -14,7 +15,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "Personal Website (this)",
+    title: "Personal Website",
+    subtitle: "(this)",
     duration: "December 2024 – now",
     description:
       "Built a fully responsive, interactive personal portfolio website showcasing my projects, values, and contact details.",
@@ -32,6 +34,7 @@ export const projects: Project[] = [
   {
     id: "2",
     title: "Feral Freedom",
+    subtitle: "(Video Game)",
     duration: "September 2024 – December 2024",
     description:
       "Collaborated with a team of six to develop a 2D pixel-art survival game featuring AI-driven patrols, Undertale-style encounters, and resource collection mechanics.",
@@ -49,6 +52,7 @@ export const projects: Project[] = [
   {
     id: "3",
     title: "PLUMAGE",
+    subtitle: "(Hackathon Project)",
     duration: "April 6–7, 2024",
     description:
       "With the data provided by Arc’teryx, we created a website in 24 hours where users can access personal sizing technology, AI-powered color analysis, and 3D garment visualization for virtual try-ons.",
@@ -80,20 +84,6 @@ export const projects: Project[] = [
   },
   {
     id: "5",
-    title: "youCode Hackathon Website Design",
-    duration: "December 2023 – January 2024",
-    description:
-      "As part of the design team, I helped create a user-friendly website UI for our hackathon, organized in collaboration with WiCS and WiDS. The design featured creative unicorn mascots to align with the hackathon’s ‘wellness’ theme.",
-    detailsTitle: "Personal Contributions:",
-    details: [
-      "Drew custom unicorn mascots that integrate the theme while maintaining accessibility and user-friendliness.",
-    ],
-    skills: ["Figma", "Graphic Design"],
-    link: "https://www.figma.com/design/jdvdb6tb3pxmRsGOnqbPzT/youCode-Designs?node-id=89-5&t=g1LlRCM6xjy7UOM9-1",
-    iconType: "link",
-  },
-  {
-    id: "6",
     title: "Project Buddies",
     duration: "July 2023 – August 2023",
     description:
