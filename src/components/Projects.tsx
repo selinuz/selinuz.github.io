@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import ProjectCard from "./ProjectCard";
-import ProjectFilter from "@/components/ProjectFilter";
-import { projects as allProjects } from "@/data/projects";
-import "@/styles/projects.css";
+import ProjectFilter from "../components/ProjectFilter";
+import { projects as allProjects } from "../data/projects";
+import "../styles/projects.css";
 
 const Projects: React.FC = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);

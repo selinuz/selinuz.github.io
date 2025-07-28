@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Project } from "@/data/projects";
+import { Project } from "../data/projects";
 
 interface Props {
   project: Project;

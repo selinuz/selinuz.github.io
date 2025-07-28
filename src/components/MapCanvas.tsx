@@ -4,7 +4,7 @@ import CoreValueBox from "./CoreValueBox";
 import ActivityBox from "./ActivityBox";
 import ZoomControls from "./ZoomControls";
 import ConnectionLines from "./ConnectionLines";
-import { coreValues, activities, connections } from "../data/core-values"; // renamed to match your new file
+import { coreValues, activities, connections } from "../data/core-values";
 import "../styles/core-values.css";
 
 export default function MapCanvas() {
@@ -46,7 +46,7 @@ export default function MapCanvas() {
     height: number,
     zoom: number
   ) {
-    const baseSpacing = windowWidth < 768 ? 100 : 200; // smaller spacing on mobile
+    const baseSpacing = windowWidth < 768 ? 100 : 200;
     const spacing = baseSpacing * zoom;
 
     return {

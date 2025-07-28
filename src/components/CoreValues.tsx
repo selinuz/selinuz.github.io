@@ -14,7 +14,6 @@ export default function CoreValues() {
             <ul>
               <li>Click on an activity to see details and highlight values.</li>
               <li>Click on a core value to expand its definition.</li>
-              <li>Drag items to reposition them freely on the map.</li>
               <li>Use +/− to zoom.</li>
             </ul>
           </div>

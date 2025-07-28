@@ -10,14 +10,12 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={menuOpen ? "open" : ""}>
-      {/* Hamburger menu - shown only on small screens */}
       <div className="hamburger" onClick={toggleMenu}>
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      {/* Main nav links - shown on larger screens */}
       <ul className="nav-links">
         <li>
           <a href="#landing">Welcome</a>
@@ -36,14 +34,12 @@ const Navbar: React.FC = () => {
         </li>
       </ul>
 
-      {/* Resume button - always visible */}
       <div className="resume-button">
-        <a href="/assets/SelinUz_WebsiteResume.pdf" download="SelinUz_Resume">
+        <a href="/SelinUz_Resume.pdf" download="SelinUz_Resume">
           Resume
         </a>
       </div>
 
-      {/* Dropdown nav - shown only when hamburger is clicked */}
       <div className="dropdown" id="nav-dropdown">
         <a href="#landing" onClick={toggleMenu}>
           Welcome
