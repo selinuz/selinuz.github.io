@@ -1,8 +1,7 @@
 #map-container {
-  padding: 70px 0;
   position: relative;
   width: 95%;
-  margin: 0 auto;
+  margin: 10% auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -223,6 +222,11 @@
 }
 
 @media (max-width: 768px) {
+  #map-container {
+    height: 70vh;
+    margin: 50% auto;
+  }
+
   .core-value {
     width: 80px;
     padding: 0.5rem;
@@ -253,7 +257,7 @@
 
   .map-label-container {
     width: 90%;
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
   .tooltip {

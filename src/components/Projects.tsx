@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
 
-  const allSkills = ["C++", "C#", "JavaScript", "React.js", "CSS", "Unity"];
+  const allSkills = ["C++", "C#", "JavaScript", "React", "CSS", "Unity"];
 
   const toggleSkill = (skill: string) => {
     setSelectedSkills((prev) =>

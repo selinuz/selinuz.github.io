@@ -61,7 +61,7 @@ export const projects: Project[] = [
       "Implemented sign-up, login, and landing pages frontend using React and JavaScript.",
       "Created the authentication service with Axios to ensure secure user registration and login via internal API.",
     ],
-    skills: ["React.js", "JavaScript", "npm"],
+    skills: ["React", "JavaScript", "npm"],
     link: "https://github.com/irmikimikmik/PLUMAGE-for-YouCode2024",
     iconType: "github",
     context: "for youCode x Arc'teryx 2024",
@@ -98,5 +98,21 @@ export const projects: Project[] = [
     link: "https://github.com/selinuz/ProjectBuddies",
     iconType: "github",
     context: "for CPSC304: Introduction to Relational Databases",
+  },
+  {
+    id: "6",
+    title: "CampusBuddy ",
+    subtitle: "(RAG Chatbot)",
+    duration: "May 2025 – Present",
+    description:
+      "Designed and built a Retrieval-Augmented Generation (RAG) chatbot to simplify access to UBC academic information",
+    detailsTitle: "Personal Contributions:",
+    details: [
+      "Initiated the project after identifying a recurring need for clarity around UBC academic processes during Committee for Diversity, Outreach and Equity (CODE) meetings, transforming student pain points into a technical solution.",
+      "Built a Retrieval-Augmented Generation (RAG) chatbot using FastAPI, LangChain, and OpenAI embeddings.",
+      "Designed a scalable React frontend with a context-aware chat interface, reusable components, and a clean design system supporting cited sources and prompt suggestions.",
+    ],
+    skills: ["FastAPI", "LangChain", "OpenAI", "React", "TypeScript"],
+    iconType: "github",
   },
 ];
