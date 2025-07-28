@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  box-sizing: border-box;
+  width: 80%;
+  margin: 0 auto;
 }
 
 #contact h1 {
@@ -20,7 +20,7 @@
 }
 
 .contact-info {
-  flex: 1;
+  flex: 0.5;
   display: flex;
   flex-direction: column;
 }
@@ -90,7 +90,11 @@
   #contact {
     flex-direction: column;
     align-items: center;
-    width: 90%;
+  }
+
+  #contact h1 {
+    font-size: 1.8rem;
+    text-align: center;
   }
 
   #contact p {
@@ -115,7 +119,6 @@
   .form-group input,
   .form-group textarea {
     font-size: 1rem;
-    padding: 20px;
     min-width: 100%;
     max-width: 100%;
   }
@@ -126,7 +129,7 @@
 
   .submit-button {
     font-size: 1rem;
-    padding: 20px;
+    padding: 10px;
     width: 100%;
   }
 }
