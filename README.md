@@ -2,7 +2,8 @@
 
 ## 🌐 Website Link
 
-Check it out here: [selinuz.github.io](https://selinuz.github.io)
+- **Live Site (HTML/CSS version):** [selinuz.github.io](https://selinuz.github.io)
+- **React Version (In Progress on Vercel):** [selinuz.vercel.app](https://selinuz.vercel.app) _(work in progress)_
 
 ---
 
