@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Landing from "../components/Landing";
 import About from "../components/About";
 import Projects from "../components/Projects";
+import CoreValues from "../components/CoreValues";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         <Landing />
         <About />
         <Projects />
-        {/* Add Projects or Values next */}
+        <CoreValues />
       </main>
     </>
   );
