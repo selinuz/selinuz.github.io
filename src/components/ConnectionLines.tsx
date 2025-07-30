@@ -8,7 +8,7 @@ export default function ConnectionLines({
   selectedActivityId: string | null;
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [hoveredLineId, setHoveredLineId] = useState<string | null>(null);
+  const [selectedLineId, setSelectedLineId] = useState<string | null>(null);
 
   const drawLines = useCallback(() => {
     const svg = svgRef.current;
@@ -32,8 +32,26 @@ export default function ConnectionLines({
       const lineId = `${from}-${to}`;
       const isHighlighted =
         from === selectedActivityId || to === selectedActivityId;
-      const isHovered = hoveredLineId === lineId;
+      const isSelected = selectedLineId === lineId;
 
+      // Invisible hitbox for easier clicks
+      const hitbox = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      hitbox.setAttribute("x1", x1.toString());
+      hitbox.setAttribute("y1", y1.toString());
+      hitbox.setAttribute("x2", x2.toString());
+      hitbox.setAttribute("y2", y2.toString());
+      hitbox.setAttribute("data-line-id", lineId);
+      hitbox.setAttribute("class", "connection-hitbox");
+      hitbox.style.cursor = "pointer";
+      hitbox.addEventListener("click", () => {
+        setSelectedLineId((prev) => (prev === lineId ? null : lineId));
+      });
+      svg.appendChild(hitbox);
+
+      // Visible line
       const line = document.createElementNS(
         "http://www.w3.org/2000/svg",
         "line"
@@ -46,20 +64,12 @@ export default function ConnectionLines({
       line.setAttribute(
         "class",
         `connection-line${isHighlighted ? " highlight" : ""}${
-          isHovered ? " hover" : ""
+          isSelected ? " selected" : ""
         }`
       );
-
-      line.addEventListener("mouseenter", () => setHoveredLineId(lineId));
-      line.addEventListener("mouseleave", () => setHoveredLineId(null));
-      svg.addEventListener("touchstart", (e) => {
-        if ((e.target as Element).tagName !== "line") {
-          setHoveredLineId(null);
-        }
-      });
-
       svg.appendChild(line);
 
+      // Line label (only visible when selected)
       if (text) {
         const midX = (x1 + x2) / 2;
         const midY = (y1 + y2) / 2;
@@ -73,7 +83,7 @@ export default function ConnectionLines({
         foreignObject.setAttribute("width", "200");
         foreignObject.setAttribute("height", "100");
         foreignObject.setAttribute("data-line-id", lineId);
-        if (!isHovered) {
+        if (!isSelected) {
           foreignObject.setAttribute("visibility", "hidden");
         }
 
@@ -86,18 +96,30 @@ export default function ConnectionLines({
         svg.appendChild(foreignObject);
       }
     });
-  }, [selectedActivityId, hoveredLineId]);
+  }, [selectedActivityId, selectedLineId]);
 
   useEffect(() => {
-    const handleDraw = () => {
-      requestAnimationFrame(() => {
-        drawLines();
-      });
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    const clearSelectionIfOutside = (e: MouseEvent | TouchEvent) => {
+      if ((e.target as Element).tagName !== "line") {
+        setSelectedLineId(null);
+      }
     };
+
+    const handleDraw = () => requestAnimationFrame(drawLines);
 
     handleDraw();
     window.addEventListener("resize", handleDraw);
-    return () => window.removeEventListener("resize", handleDraw);
+    svg.addEventListener("click", clearSelectionIfOutside);
+    svg.addEventListener("touchstart", clearSelectionIfOutside);
+
+    return () => {
+      window.removeEventListener("resize", handleDraw);
+      svg.removeEventListener("click", clearSelectionIfOutside);
+      svg.removeEventListener("touchstart", clearSelectionIfOutside);
+    };
   }, [drawLines]);
 
   return (
