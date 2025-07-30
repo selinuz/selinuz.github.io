@@ -150,11 +150,35 @@
   stroke: var(--steel-blue);
   stroke-width: 2;
   transition: stroke 0.3s ease, stroke-width 0.3s ease;
+  touch-action: manipulation;
 }
 
 .connection-line.highlight {
   stroke: var(--lavender);
   stroke-width: 10;
+}
+
+.connection-line.hover {
+  stroke: var(--lavender);
+  stroke-width: 10;
+  cursor: pointer;
+}
+
+.line-text-box {
+  background-color: var(--off-white);
+  color: var(--very-dark-purple);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  word-wrap: break-word;
+  line-height: 1.4;
+  pointer-events: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .map-label-container {
@@ -193,7 +217,7 @@
 .tooltip {
   display: none;
   position: absolute;
-  top: 13%;
+  top: 5%;
   left: 70%;
   transform: translateX(-50%);
   background-color: var(--off-white);
@@ -260,5 +284,10 @@
   .tooltip {
     width: 70%;
     font-size: 0.8rem;
+  }
+
+  .line-text-box {
+    font-size: 0.6rem;
+    width: 150px;
   }
 }

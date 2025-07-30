@@ -38,6 +38,7 @@ body {
   font-weight: bold;
   text-align: center;
   color: var(--off-white);
+  margin-bottom: 2%;
 }
 
 @media (max-width: 768px) {

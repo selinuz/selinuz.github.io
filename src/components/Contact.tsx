@@ -12,6 +12,13 @@ const Contact: React.FC = () => {
         <div className="contact-container">
           <div className="contact-line">
             <a
+              href="mailto:uz.eceselin@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer">
+              <Image src="/mail.svg" alt="Mail" width={24} height={24} />
+            </a>
+
+            <a
               href="https://www.linkedin.com/in/selin-uz/"
               target="_blank"
               rel="noopener noreferrer">
@@ -22,47 +29,9 @@ const Contact: React.FC = () => {
                 height={24}
               />
             </a>
-            <a
-              href="https://github.com/selinuz"
-              target="_blank"
-              rel="noopener noreferrer">
-              <Image src="/github.svg" alt="GitHub" width={24} height={24} />
-            </a>
           </div>
         </div>
       </div>
-
-      <form
-        className="contact-form"
-        action="https://formspree.io/f/xdkkykql"
-        method="POST">
-        <div className="form-group">
-          <label htmlFor="email" className="sr-only">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="message" className="sr-only">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Enter your message"
-            rows={5}
-            required></textarea>
-        </div>
-        <button type="submit" className="submit-button">
-          Send Message
-        </button>
-      </form>
     </section>
   );
 };
