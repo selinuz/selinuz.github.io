@@ -38,13 +38,11 @@ body {
   font-weight: bold;
   text-align: center;
   color: var(--off-white);
-  margin-top: 10%;
-  margin-bottom: 5%;
 }
 
 @media (max-width: 768px) {
   .section h1 {
     font-size: 1.6rem;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
   }
 }

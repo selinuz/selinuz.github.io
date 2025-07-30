@@ -46,12 +46,14 @@ export default function MapCanvas() {
     height: number,
     zoom: number
   ) {
-    const baseSpacing = windowWidth < 768 ? 100 : 200;
-    const spacing = baseSpacing * zoom;
+    const baseSpacing = windowWidth / 6;
+    const xspacing = baseSpacing * zoom;
+    const yspacing =
+      windowWidth < 768 ? baseSpacing * zoom * 2 : baseSpacing * zoom;
 
     return {
-      x: width / 2 + x * spacing,
-      y: height / 2 + y * spacing,
+      x: width / 2 + x * xspacing,
+      y: height / 2 + y * yspacing,
     };
   }
 

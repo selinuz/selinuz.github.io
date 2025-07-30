@@ -246,11 +246,6 @@
   #controls {
     width: 90%;
     flex-direction: column;
-    gap: 20px;
-  }
-
-  #projects-section {
-    gap: 30px;
   }
 
   #sort-dropdown {
@@ -270,7 +265,7 @@
   .project-box {
     width: 90%;
     max-width: 90%;
-    padding: 25px;
+    padding: 20px;
   }
 
   .project-box h3 {
@@ -283,13 +278,18 @@
     font-size: 0.9rem;
   }
 
+  .project-box p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
   .skill-box {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     padding: 5px 10px;
   }
 
   .skill-filter {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 8px 12px;
   }
 }

@@ -82,8 +82,7 @@
 }
 
 .core-value .definition {
-  margin-top: 0.6rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   display: none;
   color: var(--off-white);
 }
@@ -117,14 +116,12 @@
 }
 
 .activity-box .location {
-  margin-top: 0.5rem;
   font-style: italic;
   font-size: 1rem;
 }
 
 .activity-box .duration {
   font-size: 0.9rem;
-  margin-top: 0.25rem;
 }
 
 .activity-box .description {
@@ -228,31 +225,31 @@
   }
 
   .core-value {
-    width: 80px;
+    width: 70px;
     padding: 0.5rem;
   }
 
   .core-value h3 {
-    font-size: 0.7rem;
-  }
-
-  .core-value .definition {
     font-size: 0.6rem;
   }
 
+  .core-value .definition {
+    font-size: 0.4rem;
+  }
+
   .activity-box {
-    width: 150px;
+    width: 120px;
     padding: 0.7rem;
   }
 
   .activity-box .title {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .activity-box .location,
   .activity-box .duration,
   .activity-box .description {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }
 
   .map-label-container {
